@@ -16,8 +16,10 @@ public:
 
     HealerSoldier()= default;
 
-    virtual void Action() override;
+    virtual void Action();
 
+private:
+    virtual void toString(std::ostream &os) const;
 };
 
 

@@ -4,11 +4,15 @@
 
 #include "Soldiers.h"
 Soldiers::Soldiers(int _id,int _life,int _speed)
-        : id(_id),life(_life),speed(_speed) {}
+        : id(_id),life(_life),speed(_speed),armors{nullptr, nullptr} {}
 
 
 int Soldiers::getLife() const {
     return life;
+}
+
+Armors *const *Soldiers::getArmors() const {
+    return armors;
 }
 
 void Soldiers::setLife(int life) {
@@ -21,6 +25,7 @@ const Point2d &Soldiers::getSoldierLocation() const {
 
 void Soldiers::setSoldierLocation(const Point2d &soldierLocation) {
     Soldiers::soldierLocation = soldierLocation;
+
 }
 
 const int Soldiers::getSpeed() const {
@@ -30,9 +35,15 @@ const int Soldiers::getSpeed() const {
 const int Soldiers::getId() const {
     return id;
 }
+void Soldiers::toString(std::ostream &os)const {
+    os << "SoldierId: " << id << ", Life: " << life << ", Speed: " << speed << ", SoldierLocation: "
+       << soldierLocation<<", ";
+}
 
 std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers) {
     soldiers.toString(os);
+
     return os;
 }
+
 

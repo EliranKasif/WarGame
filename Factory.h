@@ -22,7 +22,7 @@ class Factory {
 
 public:
 
-    static Player* createPlayer(Object type,int _numofsoldiers,double _battlefieldwidth,double _battlefieldheight);
+    static Player* createPlayer(Object type,int _numofsoldiers,double _battlefieldwidth,double _battlefieldheight,std::list<FileControler*>::iterator& it);
     static Soldiers*  createSoldier(Object type,int _id,Object weapon);
     static Weapons*  createWeapon(Object type);
     static Armors*  createArmor(Object type,double _levelarmor);

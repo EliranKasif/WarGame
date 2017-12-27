@@ -8,34 +8,26 @@
 
 #include <vector>
 #include <list>
+#include <ostream>
 #include "Point2d.h"
 
 class Strategy {
-private:
-    const int numOfSoldiers;
-    const double height;
-    const  double width;
+public:
+    friend std::ostream &operator<<(std::ostream &os, const Strategy &strategy);
 
 protected:
     std::vector<std::list<Point2d>> destination;
+
 public:
-
-
-    Strategy(const int numOfSoldiers, const double width, const double Height);
 
     Strategy();
 
     virtual ~Strategy();
 
-    const double getHeight() const;
-
-    const double getWidth() const;
-
     virtual void implementStrategy()=0;
 
-    int getNumOfSoldiers() const;
-
     const std::vector<std::list<Point2d>> &getDestination() const;
+    virtual void toString(std::ostream &os)const =0;
 };
 
 

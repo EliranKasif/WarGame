@@ -8,6 +8,13 @@
 #include "Strategy.h"
 
 class ComputerStrategy: public Strategy {
+private:
+    const int numOfSoldiers;
+    const double height;
+    const  double width;
+    virtual void toString(std::ostream &os)const override ;
+
+
 public:
 
     ComputerStrategy(const int numOfSoldiers, const int height, const int width);

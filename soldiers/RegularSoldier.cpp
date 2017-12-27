@@ -19,3 +19,8 @@ void RegularSoldier::setWeapon(Weapons *weapon) {
 void RegularSoldier::Action() {
 
 }
+void RegularSoldier:: toString(std::ostream &os) const {
+    os << "Type: Regular Soldier, ";
+    Soldiers::toString(os);
+    os<<"Weapon: " <<* weapon;
+}

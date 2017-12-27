@@ -9,6 +9,7 @@
 #include <ostream>
 #include "../Point2d.h"
 #include "../DefaultDefines.h"
+#include "../items/collectible/armors/Armors.h"
 
 class Soldiers {
 
@@ -34,12 +35,18 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers);
 
+    Armors *const *getArmors() const;
+
+protected:
+    virtual void toString(std::ostream &os) const =0;
 private:
     const int id;
     int life;
     const int speed;
     Point2d soldierLocation;
-    virtual void toString(std::ostream &os) const =0;
+    Armors* armors[2];
+
+
 };
 
 

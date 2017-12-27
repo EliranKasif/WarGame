@@ -16,6 +16,6 @@ void Items::setLocation(const Point2d &location) {
 
 std::ostream &operator<<(std::ostream &os, const Items &item) {
     item.toString(os);
-    os<<"item location: "<<item.itemLocation<<".\n";
+    os<<"item location: "<<item.itemLocation<<" ";
     return os;
 }

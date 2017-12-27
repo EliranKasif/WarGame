@@ -21,9 +21,9 @@ class InitObject {
 
 public:
     InitObject(Decoder *decoder);
-    void Initialze();
-    void InitialzePlayers();
-    void InitialzeItemsOnMap();
+    void Initialze(std::list<FileControler*>::iterator& it);
+
+    friend std::ostream &operator<<(std::ostream &os, const InitObject &object);
 
 private:
     int battlefieldwidth;
@@ -33,6 +33,9 @@ private:
     Decoder* decoder;
     std::vector<Player*> players;
     std::vector<Items*> items;
+
+    void InitialzePlayers(std::list<FileControler*>::iterator& it);
+    void InitialzeItemsOnMap();
 
 
 

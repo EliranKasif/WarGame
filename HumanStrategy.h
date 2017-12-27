@@ -13,14 +13,15 @@ class HumanStrategy : public Strategy{
 private:
     FileControler* fileControler;
     void split(std::string& s,char delim,std::list<Point2d> &list);
+    virtual void toString(std::ostream &os)const override ;
+
 
 public:
-    HumanStrategy();
-    HumanStrategy(const int numOfSoldiers, const int height, const int width, FileControler *fileControler);
-
+    HumanStrategy(FileControler*);
     virtual void implementStrategy() override;
     virtual ~HumanStrategy();
 
+    void setFileControler(FileControler *fileControler);
 };
 
 

@@ -19,3 +19,9 @@ void SniperSoldier::setWeapon(Weapons *weapon) {
 void SniperSoldier::Action() {
 
 }
+void SniperSoldier:: toString(std::ostream &os) const {
+    os << "Type: Sniper Soldier, ";
+    Soldiers::toString(os);
+    os<<"Weapon: " <<* weapon;
+}
+

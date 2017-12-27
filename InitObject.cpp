@@ -52,7 +52,7 @@ std::ostream &operator<<(std::ostream &os, const InitObject &decoder) {
 
 InitObject::InitObject(Decoder *decoder) : decoder(decoder) {}
 
-void InitObject::Initialze(){
+void InitObject::Initialze(std::list<FileControler*>::iterator& it){
     if(decoder == nullptr)
         return;
     decoder->decode();
@@ -60,21 +60,22 @@ void InitObject::Initialze(){
     battlefieldheight=decoder->getBattlefieldheight();
     numofplayers=decoder->getPlayers();
     numofsoldiers=decoder->getSoldiers();
-   // InitObject::InitialzePlayers();
-    //InitObject::InitialzeItemsOnMap();
+    InitObject::InitialzePlayers(it);
+    InitObject::InitialzeItemsOnMap();
 
-    decoder->print();
+    //decoder->print();
 }
 
-void InitObject::InitialzePlayers(){
+void InitObject::InitialzePlayers(std::list<FileControler*>::iterator& it){
 
 
     const std::map <std::pair<std::string,int>,std::list<Node>>& map_to_init_players=decoder->getMap_to_init_players();
-    auto itMapKeyTypePlayer=map_to_init_players.begin();
+    auto itMapKeyTypePlayer =map_to_init_players.begin();
     int count=0;
     while(count<numofplayers)
     {
-        Player * p=Factory::createPlayer((Object )(*itMapKeyTypePlayer).first.second,numofsoldiers,battlefieldwidth,battlefieldheight);
+        Player * p=Factory::createPlayer((Object )(*itMapKeyTypePlayer).first.second,numofsoldiers,battlefieldwidth,battlefieldheight,it);
+        p->getStrategy()->implementStrategy();
         p->InitArmy((*itMapKeyTypePlayer).second);
         players.emplace_back(p);
         ++itMapKeyTypePlayer;
@@ -94,21 +95,42 @@ void InitObject::InitialzeItemsOnMap(){
     while(itItemsBegin!=itItemsEnd){
         if((*itItemsBegin).itemType==Object::WEAPON){
             Weapons * w=Factory::createWeapon((*itItemsBegin).type);
+            w->setLocation((*itItemsBegin).point);
             items.emplace_back(w);
         }
         else if((*itItemsBegin).itemType==Object::ARMOR){
             Armors * a=Factory::createArmor((*itItemsBegin).type,(*itArmorlevel));
+            a->setLocation((*itItemsBegin).point);
             items.emplace_back(a);
             ++itArmorlevel;
 
         }
         else if((*itItemsBegin).itemType==Object::SOLID){
             NotCollectibleItems * n=Factory::createSolid((*itItemsBegin).type,(*itSolid).first,(*itSolid).second);
+            n->setLocation((*itItemsBegin).point);
             items.emplace_back(n);
             ++itSolid;
         }
         ++itItemsBegin;
     }
 
+}
+
+std::ostream &operator<<(std::ostream &os, const InitObject &object) {
+    os << "battlefieldwidth: " << object.battlefieldwidth << " battlefieldheight: " << object.battlefieldheight
+       << " numofplayers: " << object.numofplayers << " numofsoldiers: " << object.numofsoldiers<<std::endl;
+    os<<"Players:\n";
+    size_t i=1;
+    for(auto & player:object.players){
+        os<<"Player ("<<i<<"): "<<*player<<std::endl;
+        ++i;
+    }
+    os<<"Items:\n";
+    i=1;
+    for(auto & item:object.items){
+        os<<"Item ("<<i<<"): "<<*item<<std::endl;
+        ++i;
+    }
+    return os;
 }
 

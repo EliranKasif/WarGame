@@ -5,26 +5,23 @@
 #include <sstream>
 #include "HumanStrategy.h"
 
-HumanStrategy::HumanStrategy(const int numOfSoldiers, const int height, const int width, FileControler *fileControler)
-        : Strategy(numOfSoldiers, height, width), fileControler(fileControler) {}
-
-HumanStrategy::HumanStrategy() {}
+HumanStrategy::HumanStrategy(FileControler* fileControler):fileControler(fileControler) {}
 
 void HumanStrategy::implementStrategy(){
-    std::ifstream* file=fileControler->read();
-    std::list<Point2d> list;
-    while(!(*file).eof()) {
-        std::string s;
-        std::getline(*file, s);
-        if (s.compare("Player\r")) {
-            split(s,',',list);
-            destination.emplace_back(list);
-            list.clear();
+    if(fileControler!= nullptr) {
+        std::ifstream *file = fileControler->read();
+        std::list<Point2d> list;
+        while (!(*file).eof()) {
+            std::string s;
+            std::getline(*file, s);
+            if (s.compare("Player\r")) {
+                split(s, ',', list);
+                destination.emplace_back(list);
+                list.clear();
+            }
         }
     }
-    if(destination.size() != getNumOfSoldiers()){
-
-    }
+    else return;
 
 /*
     std::cout << std::endl;
@@ -59,3 +56,9 @@ void HumanStrategy::split(std::string& s,char delim,std::list<Point2d> &list) {
 
 HumanStrategy::~HumanStrategy() {}
 
+void HumanStrategy::setFileControler(FileControler *fileControler) {
+    HumanStrategy::fileControler = fileControler;
+}
+void HumanStrategy:: toString(std::ostream &os)const{
+    os<<"Human Strategy, ";
+}

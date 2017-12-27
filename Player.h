@@ -7,6 +7,7 @@
 
 
 #include <map>
+#include <ostream>
 #include "Strategy.h"
 #include "soldiers/Soldiers.h"
 #include "Decoder.h"
@@ -17,6 +18,7 @@ private:
     const int playerId;
     Strategy* strategy;
     std::map<Soldiers*,std::list<Point2d>> army;
+
 public:
     Player();
 
@@ -32,8 +34,10 @@ public:
 
     void setArmy(const std::map<Soldiers *, std::list<Point2d>> &army);
 
-    void InitArmy(std::list<Node>& listSoldiers);
+    void InitArmy(const std::list<Node>& listSoldiers);
     //{for( on army) strategy.getVector[i]}
+
+    friend std::ostream &operator<<(std::ostream &os, const Player &player);
 };
 
 

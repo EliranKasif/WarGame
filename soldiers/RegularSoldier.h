@@ -20,7 +20,7 @@ public:
     virtual void Action() override;
 
 private:
-
+    virtual void toString(std::ostream &os) const;
     Weapons* weapon;
 };
 

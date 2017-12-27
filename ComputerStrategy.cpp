@@ -7,16 +7,17 @@
 #include "ComputerStrategy.h"
 
 ComputerStrategy::ComputerStrategy(const int numOfSoldiers, const int height, const int width)
-        : Strategy(numOfSoldiers, height, width) {}
+        : numOfSoldiers(numOfSoldiers),height( height), width(width) {}
 
-ComputerStrategy::ComputerStrategy() {}
+ComputerStrategy::ComputerStrategy()
+:  numOfSoldiers(ZERO),height(ZERO), width(ZERO){}
 
 ComputerStrategy::~ComputerStrategy() {}
 
 void ComputerStrategy::implementStrategy(){
-    int n=getNumOfSoldiers();
-    int ySize=getHeight();
-    int xSize=getWidth();
+    int n=numOfSoldiers;
+    int ySize=height;
+    int xSize=width;
 
     std::random_device rd;     // only used once to initialise (seed) engine
     std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
@@ -47,6 +48,11 @@ void ComputerStrategy::implementStrategy(){
 //    }
 
 }
+
+ void ComputerStrategy:: toString(std::ostream &os)const{
+     os<<"Computer Strategy, ";
+ }
+
 
 
 

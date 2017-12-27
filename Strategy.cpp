@@ -5,30 +5,19 @@
 #include <iostream>
 #include "Strategy.h"
 
-Strategy::Strategy(const int numOfSoldiers, const double height, const double width)
-        : numOfSoldiers(numOfSoldiers), height(height), width(width){}
 
-Strategy::Strategy():
-        numOfSoldiers(ZERO),height(ZERO),width(ZERO){}
-
-
-int Strategy::getNumOfSoldiers() const {
-    return numOfSoldiers;
-}
+Strategy::Strategy(){}
 
 const std::vector<std::list<Point2d>> &Strategy::getDestination() const {
     return destination;
 }
 
-const double Strategy::getHeight() const {
-    return height;
-}
-
-const double Strategy::getWidth() const {
-    return width;
-}
-
 Strategy::~Strategy() {
 
+}
+
+std::ostream &operator<<(std::ostream &os, const Strategy &strategy) {
+    strategy.toString(os);
+    return os;
 }
 
