@@ -13,11 +13,18 @@
 
 class Soldiers {
 
+private:
+    const int id;
+    int life;
+    const int speed;
+    Point2d soldierLocation;
+    Armors* armors[2];
+
 public:
     Soldiers(int _id,int _life,int _speed);
-
-    //default ctor
     Soldiers()= default;
+
+    virtual ~Soldiers();
 
     virtual void Action()=0;
 
@@ -39,12 +46,6 @@ public:
 
 protected:
     virtual void toString(std::ostream &os) const =0;
-private:
-    const int id;
-    int life;
-    const int speed;
-    Point2d soldierLocation;
-    Armors* armors[2];
 
 
 };

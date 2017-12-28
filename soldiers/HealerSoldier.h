@@ -16,6 +16,8 @@ public:
 
     HealerSoldier()= default;
 
+    virtual ~HealerSoldier();
+
     virtual void Action();
 
 private:

@@ -12,6 +12,9 @@ class CollectibleItems: public Items {
 
 public:
     CollectibleItems()= default;
+
+    virtual ~CollectibleItems();
+
 private:
     void toString(std::ostream &os) const override =0;
 };

@@ -7,7 +7,7 @@
 
 
 #include "Strategy.h"
-#include "FileControler.h"
+#include "../FileControler.h"
 
 class HumanStrategy : public Strategy{
 private:

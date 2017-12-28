@@ -8,7 +8,7 @@
 
 #include <map>
 #include <ostream>
-#include "Strategy.h"
+#include "strategy/Strategy.h"
 #include "soldiers/Soldiers.h"
 #include "Decoder.h"
 
@@ -27,6 +27,8 @@ public:
     void setStrategy(Strategy *strategy);
 
     Strategy *getStrategy() const;
+
+    virtual ~Player();
 
     const int getId() const;
 

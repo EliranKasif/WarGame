@@ -14,6 +14,8 @@ public:
     NotCollectibleItems(double width, double height);
     NotCollectibleItems();
 
+    virtual ~NotCollectibleItems();
+
     const double getWidth() const;
 
     const double getHeight() const;

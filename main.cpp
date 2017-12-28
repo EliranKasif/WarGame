@@ -5,12 +5,17 @@
 #include "FileControler.h"
 #include "InitCSV.h"
 #include "Decoder.h"
-#include "Strategy.h"
-#include "HumanStrategy.h"
-#include "ComputerStrategy.h"
+#include "strategy/Strategy.h"
+#include "strategy/HumanStrategy.h"
+#include "strategy/ComputerStrategy.h"
 #include "InitObject.h"
+#include "items/collectible/weapons/light/Uzi.h"
+#include "Environment.h"
 
 int main() {
+
+
+
     std::list<FileControler*> filecontrolerlist;
     FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");
     Decoder *buffer = new Decoder(file);
@@ -20,6 +25,22 @@ int main() {
     auto it= filecontrolerlist.begin();
     init.Initialze(it);
     std::cout<<init<<std::endl;
+    Environment environment(init.getBattlefieldwidth(),init.getBattlefieldheight());
+    auto& s=init.getPlayers();
+    auto& v=s[0]->getArmy();
+    const auto& it2=v.begin();
+    Soldiers* s2=(*it2).first;
+    size_t x=(size_t)s2->getSoldierLocation().getX();
+    size_t y=(size_t)s2->getSoldierLocation().getY();
+    environment.addSoldier(x,y,s2);
+    auto& check=environment.SolidersEnviroment[1][3];
+    const auto& ity=check.begin();
+    std::cout<<**ity;
+
+
+    delete(buffer);
+    delete(file);
+    delete(file2);
 
 //    Strategy *s = new HumanStrategy(file2);
 //    s->implementStrategy();

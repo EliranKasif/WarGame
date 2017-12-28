@@ -14,7 +14,9 @@ public:
 
     Weapons(const int power);
 
-  //  Weapons();
+    Weapons();
+
+    virtual ~Weapons();
 
     const int getPower() const;
 

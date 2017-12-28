@@ -5,52 +5,8 @@
 #include "InitObject.h"
 
 
-
-
-
-/*
-std::ostream &operator<<(std::ostream &os, const InitObject &decoder) {
-    os << "battlefieldwidth: " << decoder.battlefieldwidth << " battlefieldheight: " << decoder.battlefieldheight
-       << " players: " << decoder.players << " soldiers: " << decoder.soldiers<<std::endl<<"Points: "<<std::endl;
-
-    for(auto& point:decoder.objPoints)
-    {
-        os<<"["<<point.first<<","<<point.second<<"]"<<std::endl;
-
-    }
-    os<<std::endl<<"Armors: ";
-    auto it2=decoder.armorlevel.begin();
-    while(it2 != decoder.armorlevel.end())
-    {
-        os<<*it2<<", ";
-        it2++;
-    }
-    os<<std::endl<<"Solid size: ";
-    for(auto& solid:decoder.solid)
-    {
-        os<<"["<<solid.first<<","<<solid.second<<"]"<<std::endl;
-
-    }
-    os<<std::endl;
-    for(auto& map:decoder.mapEnum){
-        std::cout<<map.first<<":";
-        auto it=map.second.begin();
-        while(it!=map.second.end())
-        {
-            os << (int)*it<<",";
-            it++;
-        }
-        os <<std::endl;
-    }
-    os<<std::endl;
-
-    return os;
-}
-
-*/
-
-
-InitObject::InitObject(Decoder *decoder) : decoder(decoder) {}
+InitObject::InitObject(Decoder *decoder,Environment* _arena) : decoder(decoder),arena(_arena) {}
+InitObject::InitObject(Decoder *decoder) : decoder(decoder),arena(nullptr) {}
 
 void InitObject::Initialze(std::list<FileControler*>::iterator& it){
     if(decoder == nullptr)
@@ -133,4 +89,78 @@ std::ostream &operator<<(std::ostream &os, const InitObject &object) {
     }
     return os;
 }
+
+InitObject::~InitObject() {
+    for(auto& player:players){
+        if(player!= nullptr){
+            delete (player);
+        }
+    }
+    players.clear();
+    for(auto& item:items){
+        if(item!= nullptr){
+            delete (item);
+        }
+    }
+    items.clear();
+
+}
+
+int InitObject::getBattlefieldwidth() const {
+    return battlefieldwidth;
+}
+
+void InitObject::setBattlefieldwidth(int battlefieldwidth) {
+    InitObject::battlefieldwidth = battlefieldwidth;
+}
+
+int InitObject::getBattlefieldheight() const {
+    return battlefieldheight;
+}
+
+void InitObject::setBattlefieldheight(int battlefieldheight) {
+    InitObject::battlefieldheight = battlefieldheight;
+}
+
+int InitObject::getNumofplayers() const {
+    return numofplayers;
+}
+
+void InitObject::setNumofplayers(int numofplayers) {
+    InitObject::numofplayers = numofplayers;
+}
+
+int InitObject::getNumofsoldiers() const {
+    return numofsoldiers;
+}
+
+void InitObject::setNumofsoldiers(int numofsoldiers) {
+    InitObject::numofsoldiers = numofsoldiers;
+}
+
+Decoder *InitObject::getDecoder() const {
+    return decoder;
+}
+
+void InitObject::setDecoder(Decoder *decoder) {
+    InitObject::decoder = decoder;
+}
+
+const std::vector<Player *> &InitObject::getPlayers() const {
+    return players;
+}
+
+void InitObject::setPlayers(const std::vector<Player *> &players) {
+    InitObject::players = players;
+}
+
+const std::vector<Items *> &InitObject::getItems() const {
+    return items;
+}
+
+void InitObject::setItems(const std::vector<Items *> &items) {
+    InitObject::items = items;
+}
+
+InitObject::InitObject():decoder(nullptr) {}
 

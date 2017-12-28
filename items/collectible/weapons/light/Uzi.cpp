@@ -11,3 +11,7 @@ void Uzi::toString(std::ostream &os) const{
     os << "Uzi- ";
     LightWeapons::toString(os);
 }
+
+Uzi::~Uzi() {
+
+}

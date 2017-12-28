@@ -7,8 +7,8 @@
 HeavyWepons::HeavyWepons(int _power,int _numofshots)
         :Weapons(_power),numofshots(_numofshots){}
 
-//HeavyWepons::HeavyWepons()
-//        :Weapons(),numofshots(ZERO){}
+HeavyWepons::HeavyWepons()
+       :Weapons(),numofshots(ZERO){}
 
 void HeavyWepons::toString(std::ostream &os) const{
     Weapons::toString(os);
@@ -17,4 +17,8 @@ void HeavyWepons::toString(std::ostream &os) const{
 
 const int HeavyWepons::getNumofshots() const {
     return numofshots;
+}
+
+HeavyWepons::~HeavyWepons() {
+
 }

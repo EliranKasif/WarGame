@@ -13,7 +13,7 @@ const std::vector<std::list<Point2d>> &Strategy::getDestination() const {
 }
 
 Strategy::~Strategy() {
-
+    destination.clear();
 }
 
 std::ostream &operator<<(std::ostream &os, const Strategy &strategy) {

@@ -24,3 +24,10 @@ void RegularSoldier:: toString(std::ostream &os) const {
     Soldiers::toString(os);
     os<<"Weapon: " <<* weapon;
 }
+
+RegularSoldier::~RegularSoldier() {
+
+    if(weapon != nullptr){
+        delete(weapon);
+    }
+}

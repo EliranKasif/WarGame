@@ -7,11 +7,16 @@
 
 
 #include "items/Items.h"
+#include "InitObject.h"
+#include "Environment.h"
 
 class DataStructure {
+public:
+    DataStructure();
 
 private:
-    Items* items;
+    InitObject data;
+    Environment arena;
 
 };
 

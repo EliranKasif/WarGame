@@ -6,7 +6,7 @@
 
 Weapons::Weapons(const int power) : power(power) {}
 
-//Weapons::Weapons() : power(ZERO){}
+Weapons::Weapons() : power(ZERO){}
 
 const int Weapons::getPower() const {
     return power;
@@ -14,6 +14,10 @@ const int Weapons::getPower() const {
 
 void Weapons::toString(std::ostream &os) const{
     os<<"Power: "<<power<<", ";
+}
+
+Weapons::~Weapons() {
+
 }
 
 

@@ -21,3 +21,7 @@ const double NotCollectibleItems::getHeight() const {
 void NotCollectibleItems::toString(std::ostream &os) const{
     os << "width: " << width << ", height: " << height<<", ";
 }
+
+NotCollectibleItems::~NotCollectibleItems() {
+
+}

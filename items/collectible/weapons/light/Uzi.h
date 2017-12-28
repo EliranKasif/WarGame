@@ -11,6 +11,7 @@
 class Uzi: public LightWeapons {
 public:
     Uzi();
+    virtual ~Uzi();
 
 private:
     void toString(std::ostream &os) const override;

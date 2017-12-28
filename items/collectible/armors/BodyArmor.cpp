@@ -11,3 +11,7 @@ void BodyArmor::toString(std::ostream &os) const{
     os << "Body Armor- ";
     Armors::toString(os);
 }
+
+BodyArmor::~BodyArmor() {
+
+}

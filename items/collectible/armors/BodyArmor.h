@@ -13,6 +13,8 @@ public:
 
     BodyArmor()= default;
 
+    virtual ~BodyArmor();
+
 private:
     void toString(std::ostream &os) const override;
 

@@ -16,6 +16,8 @@ public:
 
     Items();
 
+    virtual ~Items();
+
     const Point2d &getLocation() const;
 
     void setLocation(const Point2d &location);

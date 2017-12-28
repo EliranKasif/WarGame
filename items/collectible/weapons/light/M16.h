@@ -12,6 +12,8 @@ class M16: public LightWeapons {
 public:
     M16();
 
+    virtual ~M16();
+
 private:
     void toString(std::ostream &os) const override;
 

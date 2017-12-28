@@ -12,6 +12,8 @@ class Missile: public HeavyWepons {
 public:
     Missile();
 
+    virtual ~Missile();
+
 private:
     void toString(std::ostream &os) const override;
 

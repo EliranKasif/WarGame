@@ -46,4 +46,12 @@ std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers) {
     return os;
 }
 
+Soldiers::~Soldiers() {
+    if(armors[0])
+        delete(armors[0]);
+    if(armors[1])
+        delete(armors[1]);
+
+}
+
 

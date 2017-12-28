@@ -19,7 +19,7 @@ std::ifstream* InitCSV::read() {
 }
 
 InitCSV::~InitCSV() {
-    if(!file) {
+    if(file) {
         (*file).close();
         delete(file);
     }

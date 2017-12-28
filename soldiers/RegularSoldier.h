@@ -13,6 +13,8 @@ public:
     RegularSoldier()= default;
     RegularSoldier(int _id,Weapons* weapon);
 
+    virtual ~RegularSoldier();
+
     Weapons *getWeapon() const;
 
     void setWeapon(Weapons *weapon);

@@ -17,4 +17,8 @@ void Armors::toString(std::ostream &os) const{
     os<<"level Armor: "<<levelarmor<<", " ;
 }
 
+Armors::~Armors() {
+
+}
+
 

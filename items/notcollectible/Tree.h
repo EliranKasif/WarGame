@@ -12,7 +12,9 @@
 class Tree:public NotCollectibleItems {
 public:
     Tree(double width, double height);
-    Tree()= default;
+    Tree();
+
+    virtual ~Tree();
 
 private:
     virtual void toString(std::ostream &os) const override;

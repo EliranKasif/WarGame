@@ -25,6 +25,7 @@ const std::map<Soldiers *, std::list<Point2d>> &Player::getArmy() const {
     return army;
 }
 
+
 void Player::setArmy(const std::map<Soldiers *, std::list<Point2d>> &army) {
 Player::army = army;
 }
@@ -36,9 +37,6 @@ void Player::InitArmy(const std::list<Node>& listSoldiers){
         Soldiers* s=Factory::createSoldier((*itlist).soldier,playerId,(*itlist).weapon);
         s->setSoldierLocation((*itlist).point);
         const std::list<Point2d>& points=strategy->getDestination()[counter];
-        for (auto & p:points){
-            Point2d x=p;
-        }
         army.emplace(s,points);
         ++counter;
         ++itlist;
@@ -61,6 +59,17 @@ std::ostream &operator<<(std::ostream &os, const Player &player) {
     }
 
     return os;
+}
+
+Player::~Player() {
+    for(auto& soldierInArmy:army) {
+        if(soldierInArmy.first){
+            soldierInArmy.second.clear();
+            delete(soldierInArmy.first);
+        }
+    }
+    if(strategy)
+        delete(strategy);
 }
 
 

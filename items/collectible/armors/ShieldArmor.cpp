@@ -11,3 +11,7 @@ void ShieldArmor::toString(std::ostream &os) const{
     os << "Shield Armor- ";
     Armors::toString(os);
 }
+
+ShieldArmor::~ShieldArmor() {
+
+}

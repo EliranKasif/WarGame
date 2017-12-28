@@ -19,3 +19,7 @@ std::ostream &operator<<(std::ostream &os, const Items &item) {
     os<<"item location: "<<item.itemLocation<<" ";
     return os;
 }
+
+Items::~Items() {
+
+}

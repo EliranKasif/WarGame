@@ -7,8 +7,8 @@
 
 
 #include "InitObject.h"
-#include "HumanStrategy.h"
-#include "ComputerStrategy.h"
+#include "strategy/HumanStrategy.h"
+#include "strategy/ComputerStrategy.h"
 #include "items/collectible/weapons/Weapons.h"
 #include "items/collectible/armors/Armors.h"
 #include "items/notcollectible/NotCollectibleItems.h"

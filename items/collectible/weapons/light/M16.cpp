@@ -10,3 +10,7 @@ void M16::toString(std::ostream &os) const{
     os << "M16- ";
     LightWeapons::toString(os);
 }
+
+M16::~M16() {
+
+}

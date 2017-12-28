@@ -11,9 +11,8 @@
 class HeavyWepons: public Weapons {
 public:
     HeavyWepons(int _power,int _numofshots);
-
-    //HeavyWepons();
-
+    HeavyWepons();
+    virtual ~HeavyWepons();
     const int getNumofshots() const;
 
 protected:

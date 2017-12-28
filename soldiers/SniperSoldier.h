@@ -17,6 +17,8 @@ public:
 
     SniperSoldier()= default;
 
+    virtual ~SniperSoldier();
+
     Weapons *getWeapon() const;
 
     void setWeapon(Weapons *weapon);

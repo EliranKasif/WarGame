@@ -25,3 +25,10 @@ void SniperSoldier:: toString(std::ostream &os) const {
     os<<"Weapon: " <<* weapon;
 }
 
+SniperSoldier::~SniperSoldier() {
+    if(weapon != nullptr){
+        delete(weapon);
+    }
+
+}
+

@@ -12,7 +12,8 @@
 class LightWeapons: public Weapons {
 public:
     LightWeapons(int _power,int _numofshots);
-    //LightWeapons();
+    LightWeapons();
+    virtual ~LightWeapons();
 
     const int getNumofshots() const;
 

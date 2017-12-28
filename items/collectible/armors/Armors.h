@@ -15,6 +15,8 @@ public:
 
     Armors();
 
+    virtual ~Armors();
+
     const double getLevelarmor() const;
 
 protected:

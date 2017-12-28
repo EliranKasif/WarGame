@@ -11,3 +11,7 @@ void Missile::toString(std::ostream &os) const{
     os << "Missile- ";
     HeavyWepons::toString(os);
 }
+
+Missile::~Missile() {
+
+}

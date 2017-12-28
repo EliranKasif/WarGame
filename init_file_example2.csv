@@ -6,7 +6,7 @@ p1,human
 normal,[2 3],M16
 paramedic,[10 31]
 sniper,[5 12],UZI
-p2,computer
+p2,computer,0
 normal,[90 112],Missile
 sniper,[90 113],M16
 normal,[65 100],M16

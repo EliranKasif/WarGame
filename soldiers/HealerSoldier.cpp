@@ -16,3 +16,7 @@ void HealerSoldier:: toString(std::ostream &os) const {
     os << "Type: Healer Soldier, ";
     Soldiers::toString(os);
 }
+
+HealerSoldier::~HealerSoldier() {
+
+}

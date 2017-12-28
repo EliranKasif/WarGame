@@ -4,7 +4,7 @@
 
 #include "CollectibleItems.h"
 
-//CollectibleItems::CollectibleItems(const Point2d &location)
-//        : Items() {}
 
+CollectibleItems::~CollectibleItems() {
 
+}

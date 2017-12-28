@@ -169,14 +169,20 @@ void Decoder:: initPlayersEnum(std::vector<std::string>::iterator& it, int soldi
         nodes.clear();
     }
     else if (!((*(it)).compare("computer")) || !((*(it)).compare("computer\r")) ) {
+        ++it;
+        std::pair<std::string, int> z;
+        if(!((*(it)).compare("0")) || !((*(it)).compare("0\r"))) {
+            z.first=numplayer;
+            z.second=(int) Object::COMPUTERRANDOM;
+        }
         int counter=0;
         while(counter<soldiers) {
             initSoldierEnum(it,flag::FROMPLAYER);
             nodes.emplace_back(obj);
             counter++;
         }
-        std::pair<std::string,int> z (numplayer,(int)Object::COMPUTERRANDOM);
-        map_to_init_players.emplace(z,nodes);
+
+        map_to_init_players.emplace(z, nodes);
         nodes.clear();
     }
 }
@@ -242,7 +248,14 @@ void Decoder:: initPointsObj(std::vector<std::string>::iterator& it,flag from){
 }
 
 Decoder::~Decoder() {
-
+    armorlevel.clear();
+    solid.clear();
+    list_init_to_items_on_map.clear();
+    nodes.clear();
+    for(auto& list:map_to_init_players){
+        list.second.clear();
+    }
+    map_to_init_players.clear();
 }
 
 int Decoder::getBattlefieldwidth() const {

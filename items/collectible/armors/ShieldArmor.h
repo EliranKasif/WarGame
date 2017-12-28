@@ -13,6 +13,8 @@ public:
     ShieldArmor(double _levelarmor);
     ShieldArmor()= default;
 
+    virtual ~ShieldArmor();
+
 private:
     void toString(std::ostream &os) const override;
 

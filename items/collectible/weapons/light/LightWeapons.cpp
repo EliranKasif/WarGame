@@ -7,8 +7,8 @@
 LightWeapons::LightWeapons(int _power, int numofshots)
         : Weapons(_power), numofshots(numofshots) {}
 
-//LightWeapons::LightWeapons()
-//       :Weapons(),numofshots(ZERO){}
+LightWeapons::LightWeapons()
+       :Weapons(),numofshots(ZERO){}
 
 const int LightWeapons::getNumofshots() const {
     return numofshots;
@@ -16,4 +16,8 @@ const int LightWeapons::getNumofshots() const {
 void LightWeapons::toString(std::ostream &os) const{
     Weapons::toString(os);
     os<<"numofshots: "<<numofshots<<", ";
+}
+
+LightWeapons::~LightWeapons() {
+
 }
