@@ -23,13 +23,9 @@ class InitObject {
 public:
     InitObject();
     InitObject(Decoder *decoder);
-    InitObject(Decoder *decoder,Environment* arena);
     void Initialze(std::list<FileControler*>::iterator& it);
     friend std::ostream &operator<<(std::ostream &os, const InitObject &object);
 
-private:
-    int battlefieldwidth;
-public:
     virtual ~InitObject();
 
     int getBattlefieldwidth() const;
@@ -61,11 +57,11 @@ public:
     void setItems(const std::vector<Items *> &items);
 
 private:
+    int battlefieldwidth;
     int battlefieldheight;
     int numofplayers;
     int numofsoldiers;
     Decoder* decoder;
-    Environment* arena;
     std::vector<Player*> players;
     std::vector<Items*> items;
     void InitialzePlayers(std::list<FileControler*>::iterator& it);

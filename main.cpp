@@ -11,36 +11,53 @@
 #include "InitObject.h"
 #include "items/collectible/weapons/light/Uzi.h"
 #include "Environment.h"
+#include "DataStructure.h"
 
-int main() {
+int main (int argc, char *argv[])  {
 
-
-
-    std::list<FileControler*> filecontrolerlist;
-    FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");
-    Decoder *buffer = new Decoder(file);
-    InitObject init(buffer);
-    FileControler *file2 = new InitCSV("/home/eliran/Desktop/CPP/WarGame/player1_file_example.csv");
-    filecontrolerlist.emplace_back(file2);
-    auto it= filecontrolerlist.begin();
-    init.Initialze(it);
-    std::cout<<init<<std::endl;
-    Environment environment(init.getBattlefieldwidth(),init.getBattlefieldheight());
-    auto& s=init.getPlayers();
-    auto& v=s[0]->getArmy();
-    const auto& it2=v.begin();
-    Soldiers* s2=(*it2).first;
-    size_t x=(size_t)s2->getSoldierLocation().getX();
-    size_t y=(size_t)s2->getSoldierLocation().getY();
-    environment.addSoldier(x,y,s2);
-    auto& check=environment.SolidersEnviroment[1][3];
-    const auto& ity=check.begin();
-    std::cout<<**ity;
+    DataStructure dataStructure(argc,argv);
+    std::cout<<dataStructure;
 
 
-    delete(buffer);
-    delete(file);
-    delete(file2);
+
+//
+//    std::list<FileControler*> filecontrolerlist;
+//    FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");
+//    Decoder *buffer = new Decoder(file);
+//    InitObject init(buffer);
+//    FileControler *file2 = new InitCSV("/home/eliran/Desktop/CPP/WarGame/player1_file_example.csv");
+//    filecontrolerlist.emplace_back(file2);
+//    auto it= filecontrolerlist.begin();
+//    init.Initialze(it);
+//    std::cout<<init<<std::endl;
+//    Environment environment;
+//    environment.setWSize(init.getBattlefieldwidth());
+//    environment.setHSize(init.getBattlefieldheight());
+//    environment.build();
+//    auto& s=init.getPlayers();
+//    auto& v=s[0]->getArmy();
+//    const auto& it2=v.begin();
+//    Soldiers* s2=(*it2).first;
+//    size_t x=(size_t)s2->getSoldierLocation().getX();
+//    size_t y=(size_t)s2->getSoldierLocation().getY();
+//    environment.addSoldier(x,y,s2);
+//    //auto& check=environment.SolidersEnviroment[1][3];
+//    //const auto& ity=check.begin();
+//    //std::cout<<**ity;
+//
+//
+//    delete(buffer);
+//    delete(file);
+//    delete(file2);
+
+
+
+
+
+
+
+
+
 
 //    Strategy *s = new HumanStrategy(file2);
 //    s->implementStrategy();

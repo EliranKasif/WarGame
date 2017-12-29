@@ -5,8 +5,8 @@
 #include "InitObject.h"
 
 
-InitObject::InitObject(Decoder *decoder,Environment* _arena) : decoder(decoder),arena(_arena) {}
-InitObject::InitObject(Decoder *decoder) : decoder(decoder),arena(nullptr) {}
+InitObject::InitObject(Decoder *decoder) : decoder(decoder){}
+InitObject::InitObject():decoder(nullptr) {}
 
 void InitObject::Initialze(std::list<FileControler*>::iterator& it){
     if(decoder == nullptr)
@@ -162,5 +162,5 @@ void InitObject::setItems(const std::vector<Items *> &items) {
     InitObject::items = items;
 }
 
-InitObject::InitObject():decoder(nullptr) {}
+
 
