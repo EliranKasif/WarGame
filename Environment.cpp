@@ -6,7 +6,7 @@
 #include "Environment.h"
 
 void Environment:: addSoldier(size_t i,size_t j,Soldiers* soldier){
-    SolidersEnviroment[i/10][j/10].push_back(soldier);
+    SolidersEnviroment[i/10][j/10].emplace_back(soldier);
 }
 void Environment:: removeSoldier(size_t i,size_t j,Soldiers* soldier){
     SolidersEnviroment[i/10][j/10].remove(soldier);
@@ -50,7 +50,26 @@ void Environment::setHSize(size_t hSize) {
     Environment::hSize = hSize;
 }
 
+bool Environment:: ifsolid(Point2d point) {
+    auto list = itemsEnviroment[point.getX() / 10][point.getY() / 10];
+    if (ZERO != list.size()) {//check if the list of the item in [x,y] is notempty
+        for (auto &it:list) {//check the type of the item!!
 
+        }
+    }
+}
+
+std::list<Soldiers*>& Environment::getSoldiersinArena(size_t i,size_t j){
+    i=i/10;
+    j=j/10;
+    return SolidersEnviroment[i][j];
+}
+
+std::list<Items*>& Environment::getItemsinArena(size_t i,size_t j){
+    i=i/10;
+    j=j/10;
+    return itemsEnviroment[i][j];
+}
 
 std::ostream &operator<<(std::ostream &os, const Environment &environment) {
     os << "wSize: " << environment.wSize << " hSize: " << environment.hSize << "\nSoldiersEnviroment: "<<std::endl;
@@ -84,3 +103,4 @@ std::ostream &operator<<(std::ostream &os, const Environment &environment) {
 
     return os;
 }
+

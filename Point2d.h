@@ -23,6 +23,10 @@ public:
 
     void setX(double x);
 
+    bool operator==(const Point2d &rhs) const;
+
+    bool operator!=(const Point2d &rhs) const;
+
     void setY(double y);
 
 

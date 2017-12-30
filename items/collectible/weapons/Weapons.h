@@ -12,7 +12,7 @@ class Weapons: public CollectibleItems {
 
 public:
 
-    Weapons(const int power);
+    Weapons(const int power,const int _numofshots);
 
     Weapons();
 
@@ -20,12 +20,15 @@ public:
 
     const int getPower() const;
 
+    const int getNumofshots() const;
+
 
 protected:
     virtual void toString(std::ostream &os) const override =0;
 
 private:
     const int power;
+    const int numofshots;
 
 
 };

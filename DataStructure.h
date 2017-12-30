@@ -15,12 +15,14 @@ class DataStructure {
 public:
     DataStructure(int argc, char *argv[]);
 
-private:
-    InitObject data;
-public:
+    InitObject* getData() ;
+
+    Environment* getArena() ;
+
     friend std::ostream &operator<<(std::ostream &os, const DataStructure &structure);
 
 private:
+    InitObject data;
     Environment arena;
     void build(int argc, char *argv[]);//get the file names from the command line.
 

@@ -13,12 +13,9 @@ public:
     HeavyWepons(int _power,int _numofshots);
     HeavyWepons();
     virtual ~HeavyWepons();
-    const int getNumofshots() const;
 
 protected:
     virtual void toString(std::ostream &os) const override =0;
-private:
-    const int numofshots;
 };
 
 

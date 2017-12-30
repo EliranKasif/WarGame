@@ -15,14 +15,8 @@ public:
     LightWeapons();
     virtual ~LightWeapons();
 
-    const int getNumofshots() const;
-
 protected:
     virtual void toString(std::ostream &os) const override =0;
-
-private:
-    const int numofshots;
-
 
 };
 

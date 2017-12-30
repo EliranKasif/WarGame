@@ -5,17 +5,13 @@
 #include "LightWeapons.h"
 
 LightWeapons::LightWeapons(int _power, int numofshots)
-        : Weapons(_power), numofshots(numofshots) {}
+        : Weapons(_power,numofshots) {}
 
 LightWeapons::LightWeapons()
-       :Weapons(),numofshots(ZERO){}
+       :Weapons(){}
 
-const int LightWeapons::getNumofshots() const {
-    return numofshots;
-}
 void LightWeapons::toString(std::ostream &os) const{
     Weapons::toString(os);
-    os<<"numofshots: "<<numofshots<<", ";
 }
 
 LightWeapons::~LightWeapons() {

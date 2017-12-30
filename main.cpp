@@ -17,6 +17,7 @@ int main (int argc, char *argv[])  {
 
     DataStructure dataStructure(argc,argv);
     std::cout<<dataStructure;
+    Soldiers* snip=new SniperSoldier();
 
 
 

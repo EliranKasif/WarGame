@@ -61,6 +61,47 @@ std::ostream &operator<<(std::ostream &os, const Player &player) {
     return os;
 }
 
+void Player::round(Environment* arena){
+    for(auto& soldier:army){
+        Soldiers* currentsoldier=soldier.first;
+        if(currentsoldier->getLife()<=0){ //check if soldier alive.
+            army.erase(soldier.first);//need to check itarator validition
+        }
+        else {
+            auto liststeps = soldier.second.begin();//take 1 step for each soldier and move it on arena
+            if (liststeps != soldier.second.end()) {//chec if there is a steps for the soldier
+                Point2d newlocation=*liststeps;
+                newlocation=currentsoldier->checkifcanstep(newlocation);
+                if(newlocation.getX()>arena->getWSize()){
+                    newlocation.setX(arena->getWSize()-1);
+                }
+                else if(newlocation.getX()<0){
+                    newlocation.setX(0);
+                }
+                if(newlocation.getY()>arena->getHSize()){
+                    newlocation.setY(arena->getHSize()-1);
+                }
+                else if(newlocation.getY()<0){
+                    newlocation.setY(0);
+                }
+                auto itemEnv=arena->getItemsinArena(newlocation.getX(),newlocation.getY());
+
+
+                arena->removeSoldier(soldier.first->getSoldierLocation().getX(),//delete current location of soldier from the arena
+                                     soldier.first->getSoldierLocation().getY(),
+                                     soldier.first);
+                (*(soldier.first)).Action(newlocation);//move the soldier and attack or heal
+                arena->addSoldier(soldier.first->getSoldierLocation().getX(),//update the envrioment to the new location of the soldier
+                                  soldier.first->getSoldierLocation().getY(),
+                                  soldier.first);
+                soldier.second.remove(*liststeps);//remove the 1st step after Action of a soldier.
+            }
+        }
+
+    }
+}
+
+
 Player::~Player() {
     for(auto& soldierInArmy:army) {
         if(soldierInArmy.first){

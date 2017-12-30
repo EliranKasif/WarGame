@@ -11,6 +11,7 @@
 #include "strategy/Strategy.h"
 #include "soldiers/Soldiers.h"
 #include "Decoder.h"
+#include "Environment.h"
 
 class Player {
 private:
@@ -22,7 +23,7 @@ private:
 public:
     Player();
 
-    //void round(/Envarioment/);
+    void round(Environment* arena);
 
     void setStrategy(Strategy *strategy);
 

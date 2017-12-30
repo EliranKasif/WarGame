@@ -10,7 +10,7 @@
 #include "../Point2d.h"
 #include "../DefaultDefines.h"
 #include "../items/collectible/armors/Armors.h"
-
+#include <list>
 class Soldiers {
 
 private:
@@ -19,14 +19,15 @@ private:
     const int speed;
     Point2d soldierLocation;
     Armors* armors[2];
-
 public:
     Soldiers(int _id,int _life,int _speed);
-    Soldiers()= default;
+    Soldiers();
 
     virtual ~Soldiers();
 
-    virtual void Action()=0;
+    virtual void Action(Point2d newlocation )=0;
+
+    virtual void Attack(std::list<Soldiers*>& list )=0;
 
     int getLife() const;
 
@@ -43,6 +44,10 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers);
 
     Armors *const *getArmors() const;
+
+    virtual Point2d checkifcanstep(const Point2d& point);
+
+    int random();
 
 protected:
     virtual void toString(std::ostream &os) const =0;

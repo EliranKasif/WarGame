@@ -2,9 +2,13 @@
 // Created by eliran on 19/12/17.
 //
 
+#include <random>
 #include "Soldiers.h"
 Soldiers::Soldiers(int _id,int _life,int _speed)
         : id(_id),life(_life),speed(_speed),armors{nullptr, nullptr} {}
+
+Soldiers::Soldiers()
+        : id(ZERO),life(ZERO),speed(ZERO),armors{nullptr, nullptr} {}
 
 
 int Soldiers::getLife() const {
@@ -44,6 +48,51 @@ std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers) {
     soldiers.toString(os);
 
     return os;
+}
+
+Point2d Soldiers::checkifcanstep(const Point2d& point) {
+    Point2d can;
+    if (getSoldierLocation().getX() < point.getX()) {
+        if (getSoldierLocation().getY() < point.getY()) {
+            can.setX(getSoldierLocation().getX() - getSpeed());
+            can.setY(getSoldierLocation().getY() - getSpeed());
+
+        } else if (getSoldierLocation().getY() == point.getY()) {
+            can.setX(getSoldierLocation().getX() - getSpeed());
+        } else {
+            can.setX(getSoldierLocation().getX() - getSpeed());
+            can.setY(getSoldierLocation().getY() + getSpeed());
+        }
+    } else if (getSoldierLocation().getX() == point.getX()) {
+        if (getSoldierLocation().getY() < point.getY()) {
+            can.setY(getSoldierLocation().getY() - getSpeed());
+
+        } else if (getSoldierLocation().getY() == point.getY()) {
+        } else {
+            can.setY(getSoldierLocation().getY() + getSpeed());
+        }
+    } else {
+        if (getSoldierLocation().getY() < point.getY()) {
+            can.setX(getSoldierLocation().getX() + getSpeed());
+            can.setY(getSoldierLocation().getY() - getSpeed());
+
+        } else if (getSoldierLocation().getY() == point.getY()) {
+            can.setX(getSoldierLocation().getX() + getSpeed());
+        } else {
+            can.setX(getSoldierLocation().getX() + getSpeed());
+            can.setY(getSoldierLocation().getY() + getSpeed());
+        }
+
+    }
+    return can;
+}
+
+int Soldiers::random() {
+    std::random_device rd;     // only used once to initialise (seed) engine
+    std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
+    std::uniform_int_distribution<int> uni(1,10); // guaranteed unbiased
+    return uni(rng);
+
 }
 
 Soldiers::~Soldiers() {

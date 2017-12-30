@@ -75,3 +75,11 @@ std::ostream &operator<<(std::ostream &os, const DataStructure &structure) {
     os << "data: " << structure.data << std::endl<<" arena: " << structure.arena;
     return os;
 }
+
+InitObject* DataStructure::getData() {
+    return &data;
+}
+
+Environment* DataStructure::getArena() {
+    return &arena;
+}

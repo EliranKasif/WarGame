@@ -4,20 +4,24 @@
 
 #include "Weapons.h"
 
-Weapons::Weapons(const int power) : power(power) {}
+Weapons::Weapons(const int power,const int _numofshot) : power(power),numofshots(_numofshot) {}
 
-Weapons::Weapons() : power(ZERO){}
+Weapons::Weapons() : power(ZERO),numofshots(ZERO){}
 
 const int Weapons::getPower() const {
     return power;
 }
 
 void Weapons::toString(std::ostream &os) const{
-    os<<"Power: "<<power<<", ";
+    os<<"Power: "<<power<<", "<<"numofshots: "<<numofshots<<", ";
 }
 
 Weapons::~Weapons() {
 
+}
+
+const int Weapons::getNumofshots() const {
+    return numofshots;
 }
 
 

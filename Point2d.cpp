@@ -28,4 +28,13 @@ void Point2d::setY(double y) {
 
 Point2d::Point2d():x(DEFAULT_LOCATION),y(DEFAULT_LOCATION) {}
 
+bool Point2d::operator==(const Point2d &rhs) const {
+    return x == rhs.x &&
+           y == rhs.y;
+}
+
+bool Point2d::operator!=(const Point2d &rhs) const {
+    return !(rhs == *this);
+}
+
 
