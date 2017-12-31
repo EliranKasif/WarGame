@@ -13,18 +13,43 @@
 class Items {
 
 public:
-
+    /*
+     * @brief default ctor
+     */
     Items();
 
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~Items();
 
+   /*
+    * @brief get item location on the game
+    * @return const Point2D
+    */
     const Point2d &getLocation() const;
 
+    /*
+     * @brief set the location of an item on the game
+     * @param const Point2d &
+     * @return void
+     */
     void setLocation(const Point2d &location);
 
+    /*
+     * @brief override operator<<
+     * @param os - ostream& to return the stream
+     * @param const Items& the object we want to print
+     * @return ostream
+     */
     friend std::ostream &operator<<(std::ostream &os, const Items &items);
 
 protected:
+    /*
+     * @brief pure virtual func for specific print of the derived classes
+     * @param ostream &
+     * @return void
+     */
     virtual void toString(std::ostream &os) const =0;
 
 
@@ -32,8 +57,5 @@ private:
     Point2d itemLocation;
 
 };
-
-
-//TO-DO: operator << and virtual toString()=0;
 
 #endif //WARGAME_ITEMS_H

@@ -11,13 +11,23 @@
 class CollectibleItems: public Items {
 
 public:
+    /*
+     * @brief default Constructor
+     */
     CollectibleItems()= default;
 
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~CollectibleItems();
 
 private:
+    /*
+     * @brief pure virtual func for specific print of the derived classes
+     * @param ostream &
+     * @return void
+     */
     void toString(std::ostream &os) const override =0;
 };
-
 
 #endif //WARGAME_COLLECTIBLEITEMS_H

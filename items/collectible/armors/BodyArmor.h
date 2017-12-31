@@ -9,13 +9,27 @@
 #include "Armors.h"
 class BodyArmor: public Armors {
 public:
+    /*
+     * @brief Constructor
+     * @param double armor level
+     */
     BodyArmor(double _levelarmor);
 
+    /*
+     * @brief default Constructor
+     */
     BodyArmor()= default;
-
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~BodyArmor();
 
 private:
+    /*
+     * @specific print of BodyArmor
+     * @param ostream &
+     * @return void
+     */
     void toString(std::ostream &os) const override;
 
 };

@@ -10,11 +10,22 @@
 
 class Uzi: public LightWeapons {
 public:
+    /*
+     * @brief default Constructor
+     */
     Uzi();
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~Uzi();
 
 private:
-    void toString(std::ostream &os) const override;
+    /*
+     * @brief specific print for Uzi
+     * @param ostream &
+     * @return void
+     */
+    virtual void toString(std::ostream &os) const override;
 
 };
 

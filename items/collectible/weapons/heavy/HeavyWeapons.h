@@ -10,11 +10,28 @@
 
 class HeavyWepons: public Weapons {
 public:
+  /*
+   * @brief Constructor
+   * @param const int power
+   * @param const int num of shots
+   */
     HeavyWepons(int _power,int _numofshots);
+    /*
+     * @brief default Constructor
+     */
     HeavyWepons();
+
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~HeavyWepons();
 
 protected:
+    /*
+     * @brief pure virtual func for specific print of the derived classes
+     * @param ostream &
+     * @return void
+     */
     virtual void toString(std::ostream &os) const override =0;
 };
 

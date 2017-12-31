@@ -11,14 +11,31 @@
 
 class Tree:public NotCollectibleItems {
 public:
+
+    /*
+     * @brief Constructor
+     * @param double width
+     * @param double height
+     */
     Tree(double width, double height);
+
+   /*
+    * @brief default Constructor
+    */
     Tree();
 
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~Tree();
 
 private:
+    /*
+     * @brief specific print for Tree
+     * @param ostream &
+     * @return void
+     */
     virtual void toString(std::ostream &os) const override;
-
 
 };
 

@@ -10,12 +10,28 @@
 
 class ShieldArmor: public Armors {
 public:
+    /*
+     * @brief Constructor
+     * @param double armor level
+     */
     ShieldArmor(double _levelarmor);
+
+    /*
+     * @brief default Constructor
+     */
     ShieldArmor()= default;
 
+    /*
+      * @brief virtual Destructor
+      */
     virtual ~ShieldArmor();
 
 private:
+    /*
+     * @specific print of BodyArmor
+     * @param ostream &
+     * @return void
+     */
     void toString(std::ostream &os) const override;
 
 

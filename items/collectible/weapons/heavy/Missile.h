@@ -10,12 +10,23 @@
 
 class Missile: public HeavyWepons {
 public:
+    /*
+     * @brief default Constructor
+     */
     Missile();
 
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~Missile();
 
 private:
-    void toString(std::ostream &os) const override;
+    /*
+    * @brief specific print for Missile
+    * @param ostream &
+    * @return void
+    */
+    virtual void toString(std::ostream &os) const override;
 
 
 };

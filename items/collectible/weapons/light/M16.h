@@ -10,12 +10,23 @@
 
 class M16: public LightWeapons {
 public:
+    /*
+     * @brief default Constructor
+     */
     M16();
 
+    /*
+     * @brief virtual Destructor
+     */
     virtual ~M16();
 
 private:
-    void toString(std::ostream &os) const override;
+    /*
+     * @brief specific print for M16
+     * @param ostream &
+     * @return void
+     */
+   virtual void toString(std::ostream &os) const override;
 
 };
 
