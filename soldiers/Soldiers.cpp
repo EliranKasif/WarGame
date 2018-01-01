@@ -40,8 +40,17 @@ const int Soldiers::getId() const {
     return id;
 }
 void Soldiers::toString(std::ostream &os)const {
-    os << "SoldierId: " << id << ", Life: " << life << ", Speed: " << speed << ", SoldierLocation: "
-       << soldierLocation<<", ";
+    os << "SoldierId: " << id <<
+                              ", Life: " << life << /*", Speed: " << speed << */
+                                                                         ", SoldierLocation: "
+       << soldierLocation<<", "<<"Armors: ";
+    if(armors[0]){
+        os<<"armors[0]: "<<*armors[0];
+    }
+    if(armors[1]){
+        os<<" armors[1]: "<< *armors[1] ;
+    }
+
 }
 
 std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers) {
@@ -127,6 +136,14 @@ Soldiers::~Soldiers() {
 
 const int Soldiers::getDefaultlife() const {
     return defaultlife;
+}
+
+bool Soldiers::isCanmove() const {
+    return canmove;
+}
+
+void Soldiers::setCanmove(bool canmove) {
+    Soldiers::canmove = canmove;
 }
 
 

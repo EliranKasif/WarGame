@@ -17,7 +17,7 @@ public:
 
     InitObject* getData() ;
 
-    Environment* getArena() ;
+    Environment& getArena() ;
 
     friend std::ostream &operator<<(std::ostream &os, const DataStructure &structure);
 

@@ -83,6 +83,6 @@ InitObject* DataStructure::getData() {
     return &data;
 }
 
-Environment* DataStructure::getArena() {
-    return &arena;
+Environment& DataStructure::getArena() {
+    return arena;
 }

@@ -22,6 +22,8 @@ private:
     Point2d soldierLocation;
     Armors* armors[2];
     bool switched=false;
+    bool canmove=true;
+
 public:
     Soldiers(int _id,int _life,int _speed,int _defaultlife);
     Soldiers();
@@ -55,6 +57,11 @@ public:
     virtual Point2d checkifcanstep(const Point2d& point);
 
     int random();
+
+    bool isCanmove() const;
+
+    void setCanmove(bool canmove);
+
 
 protected:
     virtual void toString(std::ostream &os) const =0;

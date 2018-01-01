@@ -19,12 +19,13 @@ private:
     const int playerId;
     Strategy* strategy;
     std::map<Soldiers*,std::list<Point2d>> army;
+    void isInArena(Point2d& newlocation,int wSize,int hSize);
 
 public:
-    static bool steps;
+    static int steps;
     Player();
 
-    void round(Environment* arena,std::ofstream& ss);
+    void round(Environment& arena,std::ofstream& ss);
 
     void setStrategy(Strategy *strategy);
 
