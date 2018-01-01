@@ -12,7 +12,7 @@
 #include "../items/collectible/armors/Armors.h"
 #include "../items/collectible/weapons/Weapons.h"
 #include <list>
-class Soldiers {
+class Soldiers: public Destroyer  {
 
 private:
     const int id;

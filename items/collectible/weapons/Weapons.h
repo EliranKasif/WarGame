@@ -47,6 +47,8 @@ public:
     */
     virtual typeofObject whoami();
 
+    const Weapons&operator=(const Weapons& other);
+
 protected:
     /*
      * @brief pure virtual func for specific print of the derived classes

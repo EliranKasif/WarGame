@@ -68,6 +68,7 @@ Point2d Soldiers::checkifcanstep(const Point2d& point) {
 
         } else if (getSoldierLocation().getY() == point.getY()) {
             can.setX(getSoldierLocation().getX() - getSpeed());
+            can.setY(point.getY());
         } else {
             can.setX(getSoldierLocation().getX() - getSpeed());
             can.setY(getSoldierLocation().getY() + getSpeed());
@@ -75,10 +76,14 @@ Point2d Soldiers::checkifcanstep(const Point2d& point) {
     } else if (getSoldierLocation().getX() == point.getX()) {
         if (getSoldierLocation().getY() > point.getY()) {
             can.setY(getSoldierLocation().getY() - getSpeed());
+            can.setX(point.getX());
 
         } else if (getSoldierLocation().getY() == point.getY()) {
+            can.setX(point.getX());
+            can.setY(point.getY());
         } else {
             can.setY(getSoldierLocation().getY() + getSpeed());
+            can.setX(point.getX());
         }
     } else {
         if (getSoldierLocation().getY() > point.getY()) {
@@ -87,6 +92,8 @@ Point2d Soldiers::checkifcanstep(const Point2d& point) {
 
         } else if (getSoldierLocation().getY() == point.getY()) {
             can.setX(getSoldierLocation().getX() + getSpeed());
+            can.setY(point.getY());
+
         } else {
             can.setX(getSoldierLocation().getX() + getSpeed());
             can.setY(getSoldierLocation().getY() + getSpeed());
@@ -121,6 +128,7 @@ Armors* Soldiers::setArmors(Armors* armor){
 
 
 Soldiers::~Soldiers() {
+    /*
     if(armors[0]) {
         delete (armors[0]);
         armors[0]= nullptr;
@@ -131,6 +139,7 @@ Soldiers::~Soldiers() {
         armors[1]= nullptr;
 
     }
+     */
 
 }
 

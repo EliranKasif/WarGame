@@ -26,14 +26,12 @@ int main (int argc, char *argv[])  {
             p->round(dataStructure.getArena(),streamouts);
         }
         int p=Player::steps;
-        std::cout<<p;
+        //std::cout<<p;
     }
     streamouts<<"The WarGame Finished";
     streamouts.close();
     std::cout<<dataStructure;
-
-
-
+    Factory::Destoryed();
 //
 //    std::list<FileControler*> filecontrolerlist;
 //    FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");

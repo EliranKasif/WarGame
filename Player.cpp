@@ -140,8 +140,7 @@ void Player::round(Environment& arena,std::ofstream& ss) {
                                     auto weap = (Weapons *) *it;
                                     std::cout << "And decied to pick a Weapon: " << *weap << std::endl;
                                     ss << "And decied to pick a Weapon: " << *weap << std::endl;
-                                    weap = currentsoldier2.Action(
-                                            weap);//set new weapon and bring back the perviuos weapon
+                                    weap = currentsoldier2.Action(weap);//set new weapon and bring back the perviuos weapon
                                     if (weap) {
                                         Point2d current = currentsoldier2.getSoldierLocation();
                                         weap->setLocation(current);
@@ -156,8 +155,7 @@ void Player::round(Environment& arena,std::ofstream& ss) {
                                     auto armor = (Armors *) *it;
                                     std::cout << "And decied to pick a Armor: " << *armor << std::endl;
                                     ss << "And decied to pick a Armor: " << *armor << std::endl;
-                                    armor = currentsoldier2.setArmors(
-                                            armor);//set new armor and bring back the perviuos armor
+                                    armor = currentsoldier2.setArmors(armor);//set new armor and bring back the perviuos armor
                                     if (armor) {
                                         *it = armor;
                                     } else {
@@ -185,12 +183,12 @@ void Player::round(Environment& arena,std::ofstream& ss) {
 }
 
 Player::~Player() {
-    for(auto& soldierInArmy:army) {
-        if(soldierInArmy.first){
-            soldierInArmy.second.clear();
-            delete(soldierInArmy.first);
-        }
-    }
+//    for(auto& soldierInArmy:army) {
+//        if(soldierInArmy.first){
+//            soldierInArmy.second.clear();
+//            delete(soldierInArmy.first);
+//        }
+//    }
     if(strategy)
         delete(strategy);
 }

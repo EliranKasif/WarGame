@@ -20,6 +20,8 @@
 //TO-DO: Factory singelton.
 class Factory {
 
+
+
 public:
 
     static Player* createPlayer(Object type,int _numofsoldiers,double _battlefieldwidth,double _battlefieldheight,std::list<FileControler*>::iterator& it);
@@ -27,6 +29,8 @@ public:
     static Weapons*  createWeapon(Object type);
     static Armors*  createArmor(Object type,double _levelarmor);
     static NotCollectibleItems*  createSolid(Object type,double width, double height);
+    static void Destoryed();
+    static std::vector<Destroyer*> byebye;
 
 };
 

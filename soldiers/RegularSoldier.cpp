@@ -159,7 +159,7 @@ void RegularSoldier::Attack(std::list<Soldiers*>& list,std::ofstream& ss  ){
 
 
 RegularSoldier::~RegularSoldier(){
-    if(weapon){
-        delete(weapon);
-    }
+//    if(weapon){
+//        delete(weapon);
+//    }
 }

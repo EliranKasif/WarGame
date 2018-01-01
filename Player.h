@@ -13,7 +13,7 @@
 #include "Decoder.h"
 #include "Environment.h"
 
-class Player {
+class Player:public Destroyer {
 private:
     static int id;
     const int playerId;
