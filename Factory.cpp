@@ -10,6 +10,8 @@
 #include "items/collectible/armors/BodyArmor.h"
 #include "items/notcollectible/Tree.h"
 
+std::vector<Destroyer*> Factory:: byebye;
+
 
 Player* Factory::createPlayer(Object type, int _numofsoldiers, double _battlefieldwidth, double _battlefieldheight,
                               std::list<FileControler *>::iterator &it) {
@@ -19,6 +21,7 @@ Player* Factory::createPlayer(Object type, int _numofsoldiers, double _battlefie
             p = new Player();
             Strategy *s = new ComputerStrategy(_numofsoldiers, _battlefieldwidth, _battlefieldheight);
             p->setStrategy(s);
+            //Factory::byebye.emplace_back(p);
             break;
         }
         case Object ::HUMAN: {
@@ -26,6 +29,7 @@ Player* Factory::createPlayer(Object type, int _numofsoldiers, double _battlefie
             Strategy *s1 = new HumanStrategy(*it);
             ++it;
             p->setStrategy(s1);
+            //Factory::byebye.emplace_back(p);
             break;
         }
     }
@@ -40,15 +44,18 @@ Soldiers*  Factory::createSoldier(Object type,int _id,Object weapon) {
         case Object::REGULARSOLDIER: {
             w = Factory::createWeapon(weapon);
             s = new RegularSoldier(_id, w);
+            Factory::byebye.emplace_back(s);
             break;
         }
         case Object::HEALERSOLDIER: {
             s = new HealerSoldier(_id);
+            Factory::byebye.emplace_back(s);
             break;
         }
         case Object::SNIPERSOLDIER: {
             w = Factory::createWeapon(weapon);
             s = new SniperSoldier(_id, w);
+            Factory::byebye.emplace_back(s);
             break;
         }
     }
@@ -63,14 +70,17 @@ Weapons* Factory::createWeapon(Object type){
     switch (type){
         case Object ::M16: {
             w = new M16();
+            Factory::byebye.emplace_back(w);
             break;
         }
         case Object ::MISSILE: {
             w = new Missile();
+            Factory::byebye.emplace_back(w);
             break;
         }
         case Object ::UZI: {
             w = new Uzi();
+            Factory::byebye.emplace_back(w);
             break;
         }
     }
@@ -82,10 +92,12 @@ Armors*  Factory::createArmor(Object type,double _levelarmor){
     switch (type){
         case Object ::SHIELDARMOR: {
             a = new ShieldArmor(_levelarmor);
+            Factory::byebye.emplace_back(a);
             break;
         }
         case Object ::BODYARMOR: {
             a = new BodyArmor(_levelarmor);
+            Factory::byebye.emplace_back(a);
             break;
         }
     }
@@ -97,9 +109,19 @@ NotCollectibleItems*  Factory::createSolid(Object type,double _width, double _he
     switch (type) {
         case Object::TREE: {
             solid = new Tree(_width, _height);
+            Factory::byebye.emplace_back(solid);
             break;
         }
     }
     return solid;
 }
+
+void Factory::Destoryed(){
+    for(auto& bye:Factory::byebye){
+        if(bye){
+            delete(bye);
+        }
+    }
+}
+
 

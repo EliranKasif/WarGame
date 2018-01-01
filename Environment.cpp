@@ -19,13 +19,19 @@ void Environment:: removeSoldier(size_t i,size_t j,Soldiers* soldier){
         ++it;
     }
 }
-void Environment:: addItem(size_t i,size_t j,Items* item){
-    itemsEnviroment[i/10][j/10].emplace_back(item);
+void Environment:: addItem(size_t i,size_t j,Items& item){
+    auto ktovet=&item;
+    itemsEnviroment[i/10][j/10].emplace_back(&item);
+    for(auto& p:itemsEnviroment[i/10][j/10])
+    {
+        auto ktovet1=&p;
+        ktovet1=&p;
+    }
 }
-void Environment:: removeIteam(size_t i,size_t j,Items* item){
+void Environment:: removeIteam(size_t i,size_t j,Items& item){
     auto it=itemsEnviroment[i/10][j/10].begin();
     while(it != itemsEnviroment[i/10][j/10].end()){
-        if(*it==item)
+        if(*it==&item)
         {
             itemsEnviroment[i/10][j/10].erase(it);
             break;

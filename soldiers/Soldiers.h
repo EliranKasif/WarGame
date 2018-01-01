@@ -12,7 +12,7 @@
 #include "../items/collectible/armors/Armors.h"
 #include "../items/collectible/weapons/Weapons.h"
 #include <list>
-class Soldiers {
+class Soldiers: public Destroyer  {
 
 private:
     const int id;
@@ -22,6 +22,8 @@ private:
     Point2d soldierLocation;
     Armors* armors[2];
     bool switched=false;
+    bool canmove=true;
+
 public:
 
     /*
@@ -94,6 +96,11 @@ public:
     virtual Point2d checkifcanstep(const Point2d& point);
 
     int random();
+
+    bool isCanmove() const;
+
+    void setCanmove(bool canmove);
+
 
 protected:
     /*

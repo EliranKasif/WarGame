@@ -50,7 +50,7 @@ void HealerSoldier::Attack(std::list<Soldiers*>& list,std::ofstream& ss  ){
                     }
                 }
                 else{
-                    std::cout << "and attack succsess" << std::endl;
+                    std::cout << "and attack succsess and the life is: "<<soldierto->getLife() << std::endl;
                     ss << "and attack succsess" << std::endl;
                 }
 

@@ -16,26 +16,22 @@
 int main (int argc, char *argv[])  {
 
     DataStructure dataStructure(argc,argv);
-   /* for(auto& item:dataStructure.getData())
-    {
-
-    }
-*/
-    std::cout<<dataStructure;
+    //std::cout<<dataStructure;
     std::ofstream streamouts;
     streamouts.open(("Out.txt"));
     streamouts<<"The WarGame by Noy && Eliran"<<std::endl;
-    while(Player::steps) {
+    int stop=dataStructure.getData()->getNumofplayers()*dataStructure.getData()->getNumofsoldiers();
+    while(Player::steps<stop) {
         for (auto &p:dataStructure.getData()->getPlayers()) {
             p->round(dataStructure.getArena(),streamouts);
         }
+        int p=Player::steps;
+        //std::cout<<p;
     }
     streamouts<<"The WarGame Finished";
     streamouts.close();
     std::cout<<dataStructure;
-
-
-
+    Factory::Destoryed();
 //
 //    std::list<FileControler*> filecontrolerlist;
 //    FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");

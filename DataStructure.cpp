@@ -52,12 +52,15 @@ void DataStructure:: build(int argc, char *argv[]){
         ++itPlayers;
     }
 
-    const auto& Item=data.getItems();
+    auto& Item=data.getItems();
+    auto ktovet=&data.getItems();
+    auto ktovet2=&Item;
     auto itItems=Item.begin();
     while(itItems != Item.end()){//loop over Items on map.
-        Items* i=(*itItems);
-        size_t x=i->getLocation().getX();
-        size_t y=i->getLocation().getY();
+        Items& i=(**itItems);
+        auto ktoveti=&i;
+        size_t x=i.getLocation().getX();
+        size_t y=i.getLocation().getY();
         arena.addItem(x,y,i);
         ++itItems;
     }
@@ -70,8 +73,6 @@ void DataStructure:: build(int argc, char *argv[]){
     }
     filetoplayers.clear();
 
-    data.clearItems();
-
 }
 
 std::ostream &operator<<(std::ostream &os, const DataStructure &structure) {
@@ -83,6 +84,6 @@ InitObject* DataStructure::getData() {
     return &data;
 }
 
-Environment* DataStructure::getArena() {
-    return &arena;
+Environment& DataStructure::getArena() {
+    return arena;
 }

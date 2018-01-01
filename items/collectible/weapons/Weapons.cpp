@@ -13,7 +13,7 @@ const int Weapons::getPower() const {
 }
 
 void Weapons::toString(std::ostream &os) const{
-    os<<"Power: "<<power<<", "<<"numofshots: "<<numofshots<<", ";
+    /*os<<"Power: "<<power<<", "<<"numofshots: "<<numofshots<<", ";*/
 }
 
 typeofObject Weapons:: whoami(){
@@ -27,5 +27,6 @@ Weapons::~Weapons() {
 const int Weapons::getNumofshots() const {
     return numofshots;
 }
+
 
 

@@ -35,8 +35,8 @@ public:
     void setHSize(size_t hSize);
     void addSoldier(size_t i,size_t j,Soldiers* soldier);
     void removeSoldier(size_t i,size_t j,Soldiers* solidier);
-    void addItem(size_t i,size_t j,Items* soldier);
-    void removeIteam(size_t i,size_t j,Items* solidier);
+    void addItem(size_t i,size_t j,Items& soldier);
+    void removeIteam(size_t i,size_t j,Items& solidier);
     bool ifsolid(Point2d point);
     std::list<Soldiers*>& getSoldiersinArena(size_t i,size_t j);
     std::list<Items*>& getItemsinArena(size_t i,size_t j);

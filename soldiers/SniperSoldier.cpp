@@ -15,7 +15,7 @@ Weapons *SniperSoldier::getWeapon() const {
     return weapon;
 }
 
-void SniperSoldier::setWeapon(Weapons *weapon) {
+void SniperSoldier::setWeapon(Weapons* weapon) {
     SniperSoldier::weapon = weapon;
 }
 
@@ -47,7 +47,7 @@ void SniperSoldier::Attack(std::list<Soldiers*>& list,std::ofstream& ss  ){
                 break;
 
             }
-            double sikui=((d-1)/d)*10;
+            double sikui=10;//((d-1)/d)*10;
             int numofshots=weapon->getNumofshots();
             while(numofshots>0) {
                 int rand=Soldiers::random();
@@ -114,10 +114,10 @@ void SniperSoldier::Attack(std::list<Soldiers*>& list,std::ofstream& ss  ){
 
 
 SniperSoldier::~SniperSoldier() {
-    if(weapon != nullptr){
-        delete(weapon);
-        weapon= nullptr;
-    }
+//    if(weapon != nullptr){
+//        delete(weapon);
+//        weapon= nullptr;
+//    }
 
 }
 

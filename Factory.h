@@ -18,6 +18,8 @@
 
 class Factory {
 
+
+
 public:
     /*
      * @brief create Player
@@ -63,6 +65,8 @@ public:
      * @return NotCollectibleItems*
      */
     static NotCollectibleItems*  createSolid(Object type,double width, double height);
+    static void Destoryed();
+    static std::vector<Destroyer*> byebye;
 
 };
 

@@ -9,11 +9,12 @@
 #include <ostream>
 #include "../Point2d.h"
 #include "../DefaultDefines.h"
+#include "../Destroyer.h"
 
 enum class typeofObject:int
 {COLLECTIBLE,NOTCOLLECTIBLE,ARMOR,WEAPON,HEAVY,LIGHT,BODYARMOR,SHEILDARMOR};
 
-class Items {
+class Items : public Destroyer {
 
 public:
     /*
