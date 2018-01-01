@@ -4,8 +4,8 @@
 
 #include <random>
 #include "Soldiers.h"
-Soldiers::Soldiers(int _id,int _life,int _speed,int _defaultlife)
-        : id(_id),life(_life),speed(_speed),defaultlife(_defaultlife),armors{nullptr, nullptr} {}
+Soldiers::Soldiers(int _id,int _life,int _speed)
+        : id(_id),life(_life),speed(_speed),defaultlife(_life),armors{nullptr, nullptr} {}
 
 Soldiers::Soldiers()
         : id(ZERO),life(ZERO),speed(ZERO),defaultlife(ZERO),armors{nullptr, nullptr} {}

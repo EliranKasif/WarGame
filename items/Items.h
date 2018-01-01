@@ -48,7 +48,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Items &items);
 
     /*
-    * @brief virtual func for know which type is
+    * @brief pure virtual func for know which type is
     * @return typeofObject (enum)
     */
     virtual typeofObject whoami()=0;

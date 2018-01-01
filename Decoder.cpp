@@ -195,7 +195,7 @@ void Decoder::setBuffer(FileControler *buffer) {
     Decoder::buffer = buffer;
 }
 
-void Decoder:: print(){
+void Decoder:: toString(){
     for(auto& list:map_to_init_players)
     {
         std::cout<<list.first.first<<" Type: "<<(int)list.first.second<<") "<<std::endl;

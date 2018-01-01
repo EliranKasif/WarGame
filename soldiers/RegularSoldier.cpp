@@ -8,7 +8,7 @@
 #include "RegularSoldier.h"
 
 RegularSoldier::RegularSoldier(int _id,Weapons* _weapon)
-        : Soldiers(_id,DEFAULT_LIFE_REGULAR,DEFAULT_SPEED_REGULAR,DEFAULT_LIFE_REGULAR),weapon(_weapon) {}
+        : Soldiers(_id,DEFAULT_LIFE_REGULAR,DEFAULT_SPEED_REGULAR),weapon(_weapon) {}
 
 
 Weapons *RegularSoldier::getWeapon() const {

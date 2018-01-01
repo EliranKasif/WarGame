@@ -7,7 +7,7 @@
 #include "HealerSoldier.h"
 
 HealerSoldier::HealerSoldier(int _id)
-        : Soldiers(_id,DEFAULT_LIFE_HEALER,DEFAULT_SPEED_HEALER,DEFAULT_LIFE_HEALER) {}
+        : Soldiers(_id,DEFAULT_LIFE_HEALER,DEFAULT_SPEED_HEALER) {}
 
 
 Weapons* HealerSoldier::Action(Weapons *weapon){

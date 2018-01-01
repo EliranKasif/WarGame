@@ -16,16 +16,52 @@
 #include "soldiers/HealerSoldier.h"
 #include "soldiers/SniperSoldier.h"
 
-
-//TO-DO: Factory singelton.
 class Factory {
 
 public:
-
+    /*
+     * @brief create Player
+     * @param Object
+     * @param int
+     * @param double
+     * @param double
+     * @param std::list<FileControler*>::iterator&
+     * @return Player*
+     */
     static Player* createPlayer(Object type,int _numofsoldiers,double _battlefieldwidth,double _battlefieldheight,std::list<FileControler*>::iterator& it);
+
+    /*
+     * @brief create Soldiers
+     * @param Object
+     * @param int
+     * @param Object
+     * @param std::list<FileControler*>::iterator&
+     * @return Soldiers*
+     */
     static Soldiers*  createSoldier(Object type,int _id,Object weapon);
+
+    /*
+     * @brief create Weapon
+     * @param Object
+     * @return Weapons*
+     */
     static Weapons*  createWeapon(Object type);
+
+    /*
+     * @brief create Armor
+     * @param Object
+     * @param double
+     * @return Armors*
+     */
     static Armors*  createArmor(Object type,double _levelarmor);
+
+    /*
+     * @brief create Solid
+     * @param Object
+     * @param double
+     * @param double
+     * @return NotCollectibleItems*
+     */
     static NotCollectibleItems*  createSolid(Object type,double width, double height);
 
 };

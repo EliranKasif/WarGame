@@ -9,7 +9,7 @@
 
 
 SniperSoldier::SniperSoldier(int _id,Weapons* _weapon)
-        : Soldiers(_id, DEFAULT_LIFE_SNIPER,DEFAULT_SPEED_SNIPER,DEFAULT_LIFE_SNIPER),weapon(_weapon){}
+        : Soldiers(_id, DEFAULT_LIFE_SNIPER,DEFAULT_SPEED_SNIPER),weapon(_weapon){}
 
 Weapons *SniperSoldier::getWeapon() const {
     return weapon;

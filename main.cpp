@@ -16,11 +16,11 @@
 int main (int argc, char *argv[])  {
 
     DataStructure dataStructure(argc,argv);
-    for(auto& item:dataStructure.getData())
+   /* for(auto& item:dataStructure.getData())
     {
 
     }
-
+*/
     std::cout<<dataStructure;
     std::ofstream streamouts;
     streamouts.open(("Out.txt"));
