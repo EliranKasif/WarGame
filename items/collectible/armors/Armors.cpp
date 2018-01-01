@@ -17,6 +17,11 @@ void Armors::toString(std::ostream &os) const{
     os<<"level Armor: "<<levelarmor<<", " ;
 }
 
+ typeofObject Armors::whoami(){
+     return typeofObject ::ARMOR;
+ }
+
+
 Armors::~Armors() {
 
 }

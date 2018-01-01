@@ -22,6 +22,7 @@ private:
 
 public:
     Environment();
+    ~Environment();
 
     void build();
 

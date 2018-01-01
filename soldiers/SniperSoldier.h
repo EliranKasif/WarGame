@@ -23,8 +23,8 @@ public:
 
     void setWeapon(Weapons *weapon);
 
-    void Action(Point2d newlocation) override;
-    virtual void Attack(std::list<Soldiers*>& list ) override;
+    Weapons* Action(Weapons *weapon) override;
+    virtual void Attack(std::list<Soldiers*>& list,std::ofstream& ss  ) override;
 
 private:
     virtual void toString(std::ostream &os) const;

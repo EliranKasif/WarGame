@@ -21,9 +21,10 @@ private:
     std::map<Soldiers*,std::list<Point2d>> army;
 
 public:
+    static bool steps;
     Player();
 
-    void round(Environment* arena);
+    void round(Environment* arena,std::ofstream& ss);
 
     void setStrategy(Strategy *strategy);
 

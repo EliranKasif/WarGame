@@ -14,6 +14,7 @@ void LightWeapons::toString(std::ostream &os) const{
     Weapons::toString(os);
 }
 
+
 LightWeapons::~LightWeapons() {
 
 }

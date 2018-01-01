@@ -19,9 +19,9 @@ public:
 
     void setWeapon(Weapons *weapon);
 
-    void Action(Point2d newlocation ) override;
+    Weapons* Action(Weapons *weapon ) override;
     virtual Point2d checkifcanstep(const Point2d& point);
-    virtual void Attack(std::list<Soldiers*>& list ) override;
+    virtual void Attack(std::list<Soldiers*>& list,std::ofstream& ss  ) override;
 
 
 private:

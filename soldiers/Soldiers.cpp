@@ -4,11 +4,11 @@
 
 #include <random>
 #include "Soldiers.h"
-Soldiers::Soldiers(int _id,int _life,int _speed)
-        : id(_id),life(_life),speed(_speed),armors{nullptr, nullptr} {}
+Soldiers::Soldiers(int _id,int _life,int _speed,int _defaultlife)
+        : id(_id),life(_life),speed(_speed),defaultlife(_defaultlife),armors{nullptr, nullptr} {}
 
 Soldiers::Soldiers()
-        : id(ZERO),life(ZERO),speed(ZERO),armors{nullptr, nullptr} {}
+        : id(ZERO),life(ZERO),speed(ZERO),defaultlife(ZERO),armors{nullptr, nullptr} {}
 
 
 int Soldiers::getLife() const {
@@ -52,8 +52,8 @@ std::ostream &operator<<(std::ostream &os, const Soldiers &soldiers) {
 
 Point2d Soldiers::checkifcanstep(const Point2d& point) {
     Point2d can;
-    if (getSoldierLocation().getX() < point.getX()) {
-        if (getSoldierLocation().getY() < point.getY()) {
+    if (getSoldierLocation().getX() > point.getX()) {
+        if (getSoldierLocation().getY() > point.getY()) {
             can.setX(getSoldierLocation().getX() - getSpeed());
             can.setY(getSoldierLocation().getY() - getSpeed());
 
@@ -64,7 +64,7 @@ Point2d Soldiers::checkifcanstep(const Point2d& point) {
             can.setY(getSoldierLocation().getY() + getSpeed());
         }
     } else if (getSoldierLocation().getX() == point.getX()) {
-        if (getSoldierLocation().getY() < point.getY()) {
+        if (getSoldierLocation().getY() > point.getY()) {
             can.setY(getSoldierLocation().getY() - getSpeed());
 
         } else if (getSoldierLocation().getY() == point.getY()) {
@@ -72,7 +72,7 @@ Point2d Soldiers::checkifcanstep(const Point2d& point) {
             can.setY(getSoldierLocation().getY() + getSpeed());
         }
     } else {
-        if (getSoldierLocation().getY() < point.getY()) {
+        if (getSoldierLocation().getY() > point.getY()) {
             can.setX(getSoldierLocation().getX() + getSpeed());
             can.setY(getSoldierLocation().getY() - getSpeed());
 
@@ -95,12 +95,38 @@ int Soldiers::random() {
 
 }
 
-Soldiers::~Soldiers() {
-    if(armors[0])
-        delete(armors[0]);
-    if(armors[1])
-        delete(armors[1]);
+Armors* Soldiers::setArmors(Armors* armor){
+    if(!armors[0] || switched){
+        Armors* selfarmor=armors[0];
+        armors[0]=armor;
+        switched=false;
+        return selfarmor;
+    }
+    else if(!armors[1]|| !switched){
+        Armors* selfarmor=armors[1];
+        armors[1]=armor;
+        switched=true;
+        return selfarmor;
+    }
+}
 
+
+Soldiers::~Soldiers() {
+    if(armors[0]) {
+        delete (armors[0]);
+        armors[0]= nullptr;
+
+    }
+    if(armors[1]) {
+        delete (armors[1]);
+        armors[1]= nullptr;
+
+    }
+
+}
+
+const int Soldiers::getDefaultlife() const {
+    return defaultlife;
 }
 
 

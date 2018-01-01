@@ -24,6 +24,12 @@ public:
      */
     virtual ~BodyArmor();
 
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami();
+
 private:
     /*
      * @specific print of BodyArmor

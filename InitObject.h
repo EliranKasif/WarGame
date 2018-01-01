@@ -56,6 +56,8 @@ public:
 
     void setItems(const std::vector<Items *> &items);
 
+    void clearItems();
+
 private:
     int battlefieldwidth;
     int battlefieldheight;

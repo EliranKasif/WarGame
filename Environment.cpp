@@ -9,13 +9,29 @@ void Environment:: addSoldier(size_t i,size_t j,Soldiers* soldier){
     SolidersEnviroment[i/10][j/10].emplace_back(soldier);
 }
 void Environment:: removeSoldier(size_t i,size_t j,Soldiers* soldier){
-    SolidersEnviroment[i/10][j/10].remove(soldier);
+    auto it=SolidersEnviroment[i/10][j/10].begin();
+    while(it != SolidersEnviroment[i/10][j/10].end()){
+        if(*it==soldier)
+        {
+            SolidersEnviroment[i/10][j/10].erase(it);
+            break;
+        }
+        ++it;
+    }
 }
 void Environment:: addItem(size_t i,size_t j,Items* item){
     itemsEnviroment[i/10][j/10].emplace_back(item);
 }
 void Environment:: removeIteam(size_t i,size_t j,Items* item){
-    itemsEnviroment[i/10][j/10].remove(item);
+    auto it=itemsEnviroment[i/10][j/10].begin();
+    while(it != itemsEnviroment[i/10][j/10].end()){
+        if(*it==item)
+        {
+            itemsEnviroment[i/10][j/10].erase(it);
+            break;
+        }
+        ++it;
+    }
 }
 
 void Environment:: build(){
@@ -62,6 +78,7 @@ bool Environment:: ifsolid(Point2d point) {
 std::list<Soldiers*>& Environment::getSoldiersinArena(size_t i,size_t j){
     i=i/10;
     j=j/10;
+    auto ktovetlist=&SolidersEnviroment[i][j];
     return SolidersEnviroment[i][j];
 }
 
@@ -104,3 +121,21 @@ std::ostream &operator<<(std::ostream &os, const Environment &environment) {
     return os;
 }
 
+Environment::~Environment(){
+    size_t x=wSize/10;
+    size_t y=hSize/10;
+    for(int i = 0 ; i < x ; ++i)
+    {
+        //Grow Columns by hSize
+        for(int j =0 ; j<y;++j){
+            itemsEnviroment[i][j].clear();
+            SolidersEnviroment[i][j].clear();
+
+        }
+        itemsEnviroment[i].clear();
+        SolidersEnviroment[i].clear();
+
+    }
+    itemsEnviroment.clear();
+    SolidersEnviroment.clear();
+}

@@ -18,8 +18,8 @@ public:
 
     virtual ~HealerSoldier();
 
-    void Action(Point2d newlocation ) override;
-    virtual void Attack(std::list<Soldiers*>& list ) override;
+    Weapons* Action(Weapons *weapon) override;
+    virtual void Attack(std::list<Soldiers*>& list,std::ofstream& ss ) override;
 
 
 private:

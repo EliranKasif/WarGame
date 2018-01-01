@@ -16,6 +16,10 @@ void Weapons::toString(std::ostream &os) const{
     os<<"Power: "<<power<<", "<<"numofshots: "<<numofshots<<", ";
 }
 
+typeofObject Weapons:: whoami(){
+    return typeofObject ::WEAPON;
+}
+
 Weapons::~Weapons() {
 
 }

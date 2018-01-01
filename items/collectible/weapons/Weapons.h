@@ -41,6 +41,11 @@ public:
      */
     const int getNumofshots() const;
 
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami();
 
 protected:
     /*
@@ -49,6 +54,8 @@ protected:
      * @return void
      */
     virtual void toString(std::ostream &os) const override =0;
+
+
 
 private:
     const int power;

@@ -10,6 +10,9 @@
 #include "../Point2d.h"
 #include "../DefaultDefines.h"
 
+enum class typeofObject:int
+{COLLECTIBLE,NOTCOLLECTIBLE,ARMOR,WEAPON,HEAVY,LIGHT,BODYARMOR,SHEILDARMOR};
+
 class Items {
 
 public:
@@ -44,6 +47,12 @@ public:
      */
     friend std::ostream &operator<<(std::ostream &os, const Items &items);
 
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami()=0;
+
 protected:
     /*
      * @brief pure virtual func for specific print of the derived classes
@@ -51,6 +60,8 @@ protected:
      * @return void
      */
     virtual void toString(std::ostream &os) const =0;
+
+
 
 
 private:

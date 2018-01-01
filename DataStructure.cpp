@@ -69,10 +69,13 @@ void DataStructure:: build(int argc, char *argv[]){
         delete(del);
     }
     filetoplayers.clear();
+
+    data.clearItems();
+
 }
 
 std::ostream &operator<<(std::ostream &os, const DataStructure &structure) {
-    os << "data: " << structure.data << std::endl<<" arena: " << structure.arena;
+    os /*<< "data: " << structure.data*/ << std::endl<<" arena: " << structure.arena;
     return os;
 }
 

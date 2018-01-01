@@ -12,6 +12,11 @@ void ShieldArmor::toString(std::ostream &os) const{
     Armors::toString(os);
 }
 
+typeofObject ShieldArmor::whoami(){
+    return typeofObject::SHEILDARMOR;
+}
+
+
 ShieldArmor::~ShieldArmor() {
 
 }

@@ -22,6 +22,7 @@ InitCSV::~InitCSV() {
     if(file) {
         (*file).close();
         delete(file);
+        file= nullptr;
     }
 }
 

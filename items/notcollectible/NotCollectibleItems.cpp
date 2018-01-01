@@ -22,6 +22,11 @@ void NotCollectibleItems::toString(std::ostream &os) const{
     os << "width: " << width << ", height: " << height<<", ";
 }
 
+
+typeofObject NotCollectibleItems:: whoami(){
+    return typeofObject::NOTCOLLECTIBLE;
+}
+
 NotCollectibleItems::~NotCollectibleItems() {
 
 }

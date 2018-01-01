@@ -10,11 +10,11 @@
 
 class HeavyWepons: public Weapons {
 public:
-  /*
-   * @brief Constructor
-   * @param const int power
-   * @param const int num of shots
-   */
+    /*
+     * @brief Constructor
+     * @param const int power
+     * @param const int num of shots
+     */
     HeavyWepons(int _power,int _numofshots);
     /*
      * @brief default Constructor
@@ -26,6 +26,11 @@ public:
      */
     virtual ~HeavyWepons();
 
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami();
 protected:
     /*
      * @brief pure virtual func for specific print of the derived classes
@@ -33,6 +38,9 @@ protected:
      * @return void
      */
     virtual void toString(std::ostream &os) const override =0;
+
+
+
 };
 
 

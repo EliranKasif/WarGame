@@ -25,6 +25,11 @@ public:
       * @brief virtual Destructor
       */
     virtual ~ShieldArmor();
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami();
 
 private:
     /*

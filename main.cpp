@@ -16,8 +16,23 @@
 int main (int argc, char *argv[])  {
 
     DataStructure dataStructure(argc,argv);
+    for(auto& item:dataStructure.getData())
+    {
+
+    }
+
     std::cout<<dataStructure;
-    Soldiers* snip=new SniperSoldier();
+    std::ofstream streamouts;
+    streamouts.open(("Out.txt"));
+    streamouts<<"The WarGame by Noy && Eliran"<<std::endl;
+    while(Player::steps) {
+        for (auto &p:dataStructure.getData()->getPlayers()) {
+            p->round(dataStructure.getArena(),streamouts);
+        }
+    }
+    streamouts<<"The WarGame Finished";
+    streamouts.close();
+    std::cout<<dataStructure;
 
 
 

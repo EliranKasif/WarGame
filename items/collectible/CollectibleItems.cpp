@@ -5,6 +5,10 @@
 #include "CollectibleItems.h"
 
 
+ typeofObject CollectibleItems::whoami(){
+     return typeofObject::COLLECTIBLE;
+ }
+
 CollectibleItems::~CollectibleItems() {
 
 }

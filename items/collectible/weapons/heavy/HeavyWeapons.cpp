@@ -14,6 +14,10 @@ void HeavyWepons::toString(std::ostream &os) const{
     Weapons::toString(os);
 }
 
+ typeofObject HeavyWepons::whoami(){
+     return typeofObject ::HEAVY;
+ }
+
 HeavyWepons::~HeavyWepons() {
 
 }

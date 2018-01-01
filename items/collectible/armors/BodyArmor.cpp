@@ -12,6 +12,10 @@ void BodyArmor::toString(std::ostream &os) const{
     Armors::toString(os);
 }
 
+ typeofObject BodyArmor::whoami(){
+    return typeofObject ::BODYARMOR;
+}
+
 BodyArmor::~BodyArmor() {
 
 }

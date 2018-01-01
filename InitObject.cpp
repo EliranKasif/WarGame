@@ -72,6 +72,11 @@ void InitObject::InitialzeItemsOnMap(){
 
 }
 
+void InitObject::clearItems() {
+
+
+}
+
 std::ostream &operator<<(std::ostream &os, const InitObject &object) {
     os << "battlefieldwidth: " << object.battlefieldwidth << " battlefieldheight: " << object.battlefieldheight
        << " numofplayers: " << object.numofplayers << " numofsoldiers: " << object.numofsoldiers<<std::endl;
@@ -94,12 +99,14 @@ InitObject::~InitObject() {
     for(auto& player:players){
         if(player!= nullptr){
             delete (player);
+            player= nullptr;
         }
     }
     players.clear();
-    for(auto& item:items){
-        if(item!= nullptr){
+    for (auto &item:items) {
+        if (item) {
             delete (item);
+            item = nullptr;
         }
     }
     items.clear();

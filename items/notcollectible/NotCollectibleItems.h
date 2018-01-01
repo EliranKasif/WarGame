@@ -40,6 +40,12 @@ public:
      */
     const double getHeight() const;
 
+    /*
+    * @brief virtual func for know which type is
+    * @return typeofObject (enum)
+    */
+    virtual typeofObject whoami();
+
 protected:
     /*
      * @brief pure virtual func for specific print of the derived classes
@@ -47,6 +53,8 @@ protected:
      * @return void
      */
     virtual void toString(std::ostream &os) const override =0;
+
+
 
 private:
     const double width,height;
