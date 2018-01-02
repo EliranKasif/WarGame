@@ -6,7 +6,7 @@
 
 Decoder::Decoder(FileControler *buffer) : buffer(buffer) {}
 
-void Decoder::decode() {
+void Decoder::decode() throw(decodeException,numofplayerException,numofSoldiersException) {
     std::ifstream* file=buffer->read();
     if(file == nullptr)
         return;
@@ -28,6 +28,9 @@ void Decoder::decode() {
             battlefieldheight = std::stoi(*it, 0, 10);
         } else if (!s.compare("players")) {
             players = std::stoi(*(++it), 0, 10);
+            if(players>MAXIMUM_NUM_OF_PLAYERS || players<MINIMUM_NUM_OF_PLAYERS){
+                throw numofplayerException();
+            }
         } else if (!s.compare("soldiers")) {
             soldiers = std::stoi(*(++it), 0, 10);
         } else if (!s.compare("p1")) {
@@ -39,59 +42,77 @@ void Decoder::decode() {
         } else if (!s.compare("p4")) {
             initPlayersEnum(it,soldiers);
         } else if (!s.compare("Objects") || !s.compare("Objects\r")) {
-                while (it < strs.end()) {
-                    std::string x = *it;
-                    if (!(*it).compare("weapon")) {
-                        initWeaponsEnum(it,flag::FROMOBJECT);
-                        obj2.itemType=Object ::WEAPON;
+            while (it < strs.end()) {
+                try{
+                std::string x = *it;
+                if (!(*it).compare("weapon")) {
+                    initWeaponsEnum(it, flag::FROMOBJECT);
+                    obj2.itemType = Object::WEAPON;
+                    it++;
+                    initPointsObj(it, flag::FROMOBJECT);
+                    list_init_to_items_on_map.emplace_back(obj2);
+                } else if (!(*it).compare("Armor")) {
+                    obj2.itemType = Object::ARMOR;
+                    it++;
+                    std::string x = *it.base();
+                    if (!((*(it)).compare("BodyArmor"))) {
+                        obj2.type = Object::BODYARMOR;
                         it++;
-                        initPointsObj(it,flag::FROMOBJECT);
+                        armorlevel.push_back(std::stod(*it));
+                        it++;
+                        initPointsObj(it, flag::FROMOBJECT);
                         list_init_to_items_on_map.emplace_back(obj2);
-                    } else if (!(*it).compare("Armor")) {
-                        obj2.itemType=Object ::ARMOR;
+
+                    } else if (!((*(it)).compare("ShieldArmor"))) {
+                        obj2.type = Object::SHIELDARMOR;
                         it++;
-                        std::string x = *it.base();
-                        if (!((*(it)).compare("BodyArmor"))) {
-                            obj2.type=Object ::BODYARMOR;
-                            it++;
-                            armorlevel.push_back(std::stod(*it));
-                            it++;
-                            initPointsObj(it,flag::FROMOBJECT);
-                            list_init_to_items_on_map.emplace_back(obj2);
-
-                        } else if (!((*(it)).compare("ShieldArmor"))) {
-                            obj2.type=Object ::SHIELDARMOR;
-                            it++;
-                            armorlevel.push_back(std::stod(*it));
-                            it++;
-                            initPointsObj(it,flag::FROMOBJECT);
-                            list_init_to_items_on_map.emplace_back(obj2);
-
-                        }
-
-                    } else if (!(*it).compare("solid")) {
+                        armorlevel.push_back(std::stod(*it));
                         it++;
-                        if (!((*(it)).compare("Tree"))) {
-                            obj2.type=Object ::TREE;
-                            obj2.itemType=Object ::SOLID;
-                            it++;
-                            double x = std::stod(*it);
-                            it++;
-                            double y = std::stod(*it);
-                            it++;
-                            solid.emplace_back(x, y);
-                            initPointsObj(it,flag::FROMOBJECT);
-                            list_init_to_items_on_map.emplace_back(obj2);
-
-                        }
+                        initPointsObj(it, flag::FROMOBJECT);
+                        list_init_to_items_on_map.emplace_back(obj2);
 
                     }
+
+                } else if (!(*it).compare("solid")) {
                     it++;
+                    if (!((*(it)).compare("Tree"))) {
+                        obj2.type = Object::TREE;
+                        obj2.itemType = Object::SOLID;
+                        it++;
+                        double x = std::stod(*it);
+                        it++;
+                        double y = std::stod(*it);
+                        it++;
+                        solid.emplace_back(x, y);
+                        initPointsObj(it, flag::FROMOBJECT);
+                        list_init_to_items_on_map.emplace_back(obj2);
+
+                    }
 
                 }
+                it++;
+
+            }
+            catch (const std::exception& e){
+                throw decodeException ();
+            }
+            }
+
+
+        }
+        else{
+            throw decodeException();
         }
         it++;
     }
+    int size=0;
+    for(auto& listsol:map_to_init_players){
+        size=size+listsol.second.size();
+    }
+    if(size != soldiers*players){
+        throw numofSoldiersException();
+    }
+
 }
 template<typename Out>
 void Decoder::split(const std::string &s, char delim, Out result) {
@@ -164,16 +185,16 @@ void Decoder:: initPlayersEnum(std::vector<std::string>::iterator& it, int soldi
             nodes.emplace_back(obj);
             counter++;
         }
-        std::pair<std::string,int> z (numplayer,(int)Object::HUMAN);
+        std::pair<std::string,Object> z (numplayer,Object::HUMAN);
         map_to_init_players.emplace(z,nodes);
         nodes.clear();
     }
     else if (!((*(it)).compare("computer")) || !((*(it)).compare("computer\r")) ) {
         ++it;
-        std::pair<std::string, int> z;
+        std::pair<std::string, Object> z;
         if(!((*(it)).compare("0")) || !((*(it)).compare("0\r"))) {
             z.first=numplayer;
-            z.second=(int) Object::COMPUTERRANDOM;
+            z.second=Object::COMPUTERRANDOM;
         }
         int counter=0;
         while(counter<soldiers) {
@@ -228,23 +249,26 @@ void Decoder:: toString(){
 }
 
 
-void Decoder:: initPointsObj(std::vector<std::string>::iterator& it,flag from){
-    std::string temp=*it;
-    int pos=temp.find(' ');
-    temp=temp.substr(1,pos-1);
-    double x=std::stod(temp);
-    temp=*it;
-    temp=temp.substr(pos+1,temp.length()-2);
-    double y = std::stod(temp);
-    if(from==flag::FROMPLAYER) {
-        obj.point.setX(x);
-        obj.point.setY(y);
+void Decoder:: initPointsObj(std::vector<std::string>::iterator& it,flag from) throw (decodeException){
+    try {
+        std::string temp = *it;
+        int pos = temp.find(' ');
+        temp = temp.substr(1, pos - 1);
+        double x = std::stod(temp);
+        temp = *it;
+        temp = temp.substr(pos + 1, temp.length() - 2);
+        double y = std::stod(temp);
+        if (from == flag::FROMPLAYER) {
+            obj.point.setX(x);
+            obj.point.setY(y);
+        } else if (from == flag::FROMOBJECT) {
+            obj2.point.setX(x);
+            obj2.point.setY(y);
+        }
     }
-    else if(from==flag::FROMOBJECT){
-        obj2.point.setX(x);
-        obj2.point.setY(y);
+    catch (const std::exception& e){
+        throw decodeException ();
     }
-
 }
 
 Decoder::~Decoder() {
@@ -282,7 +306,7 @@ const std::list<std::pair<double, double>> &Decoder::getSolid() const {
     return solid;
 }
 
-const std::map<std::pair<std::string, int>, std::list<Node>> &Decoder::getMap_to_init_players() const {
+const std::map<std::pair<std::string, Object>, std::list<Node>> &Decoder::getMap_to_init_players() const {
     return map_to_init_players;
 }
 

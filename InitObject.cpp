@@ -8,10 +8,11 @@
 InitObject::InitObject(Decoder *decoder) : decoder(decoder){}
 InitObject::InitObject():decoder(nullptr) {}
 
-void InitObject::Initialze(std::list<FileControler*>::iterator& it){
+void InitObject::Initialze(std::list<FileControler*>::iterator& it) throw(decodeException){
     if(decoder == nullptr)
-        return;
-    decoder->decode();
+        throw decodeException();
+
+
     battlefieldwidth=decoder->getBattlefieldwidth();
     battlefieldheight=decoder->getBattlefieldheight();
     numofplayers=decoder->getPlayers();
@@ -19,19 +20,24 @@ void InitObject::Initialze(std::list<FileControler*>::iterator& it){
     InitObject::InitialzePlayers(it);
     InitObject::InitialzeItemsOnMap();
 
-    //decoder->print();
 }
 
 void InitObject::InitialzePlayers(std::list<FileControler*>::iterator& it){
 
 
-    const std::map <std::pair<std::string,int>,std::list<Node>>& map_to_init_players=decoder->getMap_to_init_players();
+    const std::map <std::pair<std::string,Object >,std::list<Node>>& map_to_init_players=decoder->getMap_to_init_players();
     auto itMapKeyTypePlayer =map_to_init_players.begin();
     int count=0;
     while(count<numofplayers)
     {
         Player * p=Factory::createPlayer((Object )(*itMapKeyTypePlayer).first.second,numofsoldiers,battlefieldwidth,battlefieldheight,it);
-        p->getStrategy()->implementStrategy();
+        try {
+            p->getStrategy()->implementStrategy();
+        }
+        catch(const MyException& e){
+            std::cerr<<e.what()<<std::endl;
+            exit(1);
+        }
         p->InitArmy((*itMapKeyTypePlayer).second);
         players.emplace_back(p);
         ++itMapKeyTypePlayer;

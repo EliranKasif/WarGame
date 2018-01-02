@@ -14,24 +14,28 @@
 #include "DataStructure.h"
 
 int main (int argc, char *argv[])  {
-
-    DataStructure dataStructure(argc,argv);
-    //std::cout<<dataStructure;
-    std::ofstream streamouts;
-    streamouts.open(("Out.txt"));
-    streamouts<<"The WarGame by Noy && Eliran"<<std::endl;
-    int stop=dataStructure.getData()->getNumofplayers()*dataStructure.getData()->getNumofsoldiers();
-    while(Player::steps<stop) {
-        for (auto &p:dataStructure.getData()->getPlayers()) {
-            p->round(dataStructure.getArena(),streamouts);
+    try {
+    DataStructure dataStructure(argc, argv);
+        std::ofstream streamouts;
+        streamouts.open(("Out.txt"));
+        streamouts<<"The WarGame by Noy && Eliran"<<std::endl;
+        int stop=dataStructure.getData()->getNumofplayers()*dataStructure.getData()->getNumofsoldiers();
+        while(Player::steps<stop) {
+            for (auto &p:dataStructure.getData()->getPlayers()) {
+                p->round(dataStructure.getArena(),streamouts);
+            }
         }
-        int p=Player::steps;
-        //std::cout<<p;
+        streamouts<<"The WarGame Finished";
+        streamouts.close();
+        std::cout<<dataStructure;
+        Destroyer::Destroy(Factory::getByebye());
     }
-    streamouts<<"The WarGame Finished";
-    streamouts.close();
-    std::cout<<dataStructure;
-    Factory::Destoryed();
+    catch (const MyException& e){
+        std::cerr<<e.what();
+        exit(1);
+    }
+    //std::cout<<dataStructure;
+
 //
 //    std::list<FileControler*> filecontrolerlist;
 //    FileControler *file = new InitCSV("/home/eliran/Desktop/CPP/WarGame/init_file_example.csv");

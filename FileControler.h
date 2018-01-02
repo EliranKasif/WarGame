@@ -9,6 +9,7 @@
 #include <fstream>
 
 class FileControler {
+
 public:
     /*
      * @brief default Constructor
@@ -24,7 +25,13 @@ public:
      * @brief pure virtual func to read specific file type
      * return std::ifstream*
      */
-    virtual std::ifstream* read()=0;
+    virtual std::ifstream *read()=0;
+
+    /*
+     * @brief get the path of the file
+     * @return const std::string &
+     */
+    virtual const std::string &getPath() const =0;
 };
 
 

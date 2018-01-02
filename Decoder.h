@@ -8,13 +8,18 @@
 
 #include "FileControler.h"
 #include "Point2d.h"
+#include "Exceptions/decodeException.h"
+#include "Exceptions/numofplayerException.h"
+#include "Exceptions/numofSoldiersException.h"
 #include <sstream>
 #include <iostream>
+#include <ostream>
 #include <map>
 #include <list>
 #include <vector>
+#include <string>
 
-enum class Object:int
+enum class Object:char
 {UNDI=-1,HUMAN,COMPUTERRANDOM,REGULARSOLDIER,SNIPERSOLDIER,HEALERSOLDIER,M16,MISSILE,UZI,BODYARMOR,SHIELDARMOR,TREE,ARMOR,WEAPON,SOLID};
 
 class Node{
@@ -44,7 +49,7 @@ public:
     /*
      * @brief build enum from string
      */
-    void decode();
+    void decode() throw(decodeException,numofplayerException,numofSoldiersException);
 
     /*
      * @brief virtual Destructor
@@ -92,7 +97,7 @@ public:
      * @brief get Map_to_init_players
      * @return const std::map<std::pair<std::string, int>, std::list<Node>>
      */
-    const std::map<std::pair<std::string, int>, std::list<Node>> &getMap_to_init_players() const;
+    const std::map<std::pair<std::string,Object>, std::list<Node>> &getMap_to_init_players() const;
 
     /*
      * @brief get Soldiers
@@ -126,7 +131,7 @@ private:
     int soldiers=0;
     std::list<double> armorlevel;
     std::list<std::pair<double,double>> solid;
-    std::map <std::pair<std::string,int>,std::list<Node>> map_to_init_players;
+    std::map <std::pair<std::string,Object>,std::list<Node>> map_to_init_players;
     Node obj;
     std::list<Node> nodes;
     Node2 obj2;
@@ -180,7 +185,7 @@ private:
      * @param flag- check if belong to soldier or item on the map
      * @return void
      */
-    void initPointsObj(std::vector<std::string>::iterator& it,flag from);
+    void initPointsObj(std::vector<std::string>::iterator& it,flag from) throw (decodeException);
 
 };
 

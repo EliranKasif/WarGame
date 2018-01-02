@@ -9,10 +9,17 @@ InitCSV::InitCSV(const std::string &path) : path(path),file(nullptr) {}
 
 std::ifstream* InitCSV::read() {
     if(!file) {
-        file=new std::ifstream(path);
-        if (!(*file).is_open()) {
-            std::cout << "Can't read file" << std::endl;
-            return nullptr;
+        try {
+            file = new std::ifstream(path);
+            if (!(*file).is_open()) {
+                std::cout << "Can't read file" << std::endl;
+                return nullptr;
+            }
+        }
+        catch (std::ios_base& e){
+            std::cerr << "exception at reading InitFile CSV, check the path please" << '\n';
+            exit(1);
+
         }
     }
     return file;

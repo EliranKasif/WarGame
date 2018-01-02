@@ -6,10 +6,12 @@
 #define WARGAME_DESTROYER_H
 
 
+#include <vector>
+
 class Destroyer {
 public:
     virtual ~Destroyer();
-
+static void Destroy(std::vector<Destroyer*>& vec);
 };
 
 #endif //WARGAME_DESTROYER_H

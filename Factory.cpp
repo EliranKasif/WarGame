@@ -26,7 +26,7 @@ Player* Factory::createPlayer(Object type, int _numofsoldiers, double _battlefie
         }
         case Object ::HUMAN: {
             p = new Player();
-            Strategy *s1 = new HumanStrategy(*it);
+            Strategy *s1 = new HumanStrategy(*it,_numofsoldiers);
             ++it;
             p->setStrategy(s1);
             //Factory::byebye.emplace_back(p);
@@ -116,12 +116,8 @@ NotCollectibleItems*  Factory::createSolid(Object type,double _width, double _he
     return solid;
 }
 
-void Factory::Destoryed(){
-    for(auto& bye:Factory::byebye){
-        if(bye){
-            delete(bye);
-        }
-    }
+std::vector<Destroyer *> &Factory::getByebye() {
+    return byebye;
 }
 
 
