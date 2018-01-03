@@ -36,7 +36,7 @@ void ReadFromuser::readArgv(int argc, char **argv) throw (decodeException,argume
         std::string pathplayesmoves (argv[index]);
         FileControler *playerfile = new InitCSV(pathplayesmoves);
         filetoplayers.emplace_back(playerfile);
-        --argc;
+        //--argc;
         index++;
     }
     for(auto& map:buffer->getMap_to_init_players()){
