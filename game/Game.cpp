@@ -5,8 +5,9 @@
 #include "Game.h"
 
 void Game::read(int argc,char *argv[])throw(decodeException,argumentException,equalityException,numofplayerException,numofSoldiersException){
+    design=new ReadFromuser();
     try {
-        design.readArgv(argc, argv);
+        design->readArgv(argc, argv);
     }
     catch(const decodeException& e){
         throw e;
@@ -27,7 +28,7 @@ void Game::read(int argc,char *argv[])throw(decodeException,argumentException,eq
 }
 
 void Game:: initDataStructure(){
-    DS.build(design);
+    DS.build(*design);
 }
 
 void Game::GameLogic(){
@@ -43,18 +44,26 @@ void Game::GameLogic(){
 
     int maxArmy=0;
     int WinnerID=0;
+    int size1=DS.getData()->getPlayers().size();
     for(auto& print:DS.getData()->getPlayers()) {
         streamouts<<"Player "<<print->getPlayerId()<<" Number of soldiers: "<<print->getArmy().size()<<std::endl;;
         for(auto& print2:print->getArmy()) {
-            streamouts<<*print2.first<<std::endl;
-            if(print->getArmy().size()>maxArmy){
-                maxArmy=print->getArmy().size();
-                WinnerID=print->getPlayerId();
-            }
+            streamouts << *print2.first << std::endl;
         }
+        int size=print->getArmy().size();
+        if( size==maxArmy) {
+            WinnerID = 0;
+        }
+        else  if(size>maxArmy){
+            maxArmy=size;
+            WinnerID=print->getPlayerId();
+        }
+
+
     }
+
     if(WinnerID==0){
-        streamouts<<"The Winner is: there is no winner";
+        streamouts<<"The Winner is: there is no winner"<<std::endl;
     }
     else{
         streamouts<<"The Winner is: Player "<<WinnerID<<std::endl;
@@ -66,6 +75,11 @@ void Game::GameLogic(){
 
 void Game::GameOver() {
     Destroyer::Destroy(Factory::getByebye());
+}
+
+Game::~Game() {
+    if(design)
+        delete design;
 }
 
 

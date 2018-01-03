@@ -50,23 +50,10 @@ void ReadFromuser::readArgv(int argc, char **argv) throw (decodeException,argume
     delete(initfile);
 }
 
-const std::list<FileControler *> &ReadFromuser::getFiletoplayers() const {
-    return filetoplayers;
-}
+
 
 ReadFromuser::~ReadFromuser() {
-    if(buffer){
-        delete(buffer);
-    }
-    for(auto& del:filetoplayers){
-        if(del) {
-            delete (del);
-        }
-    }
-    filetoplayers.clear();
 
 }
 
-Decoder *ReadFromuser::getBuffer() const {
-    return buffer;
-}
+

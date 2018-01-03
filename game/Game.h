@@ -13,7 +13,7 @@
 class Game {
 
 private:
-    ReadFromuser design;
+    Reader* design;
     DataStructure DS;
 public:
     void read(int argc,char *argv[]) throw (decodeException,argumentException,equalityException,numofplayerException,numofSoldiersException);
@@ -21,6 +21,7 @@ public:
     void GameLogic();
     void GameOver();
 
+    virtual ~Game();
 };
 
 

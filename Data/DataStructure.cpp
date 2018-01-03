@@ -5,7 +5,7 @@
 #include "DataStructure.h"
 
 
-void DataStructure:: build(const ReadFromuser& design) {
+void DataStructure:: build(const Reader& design) {
         data.setDecoder(design.getBuffer());
         auto list=design.getFiletoplayers();
         auto it=list.begin();

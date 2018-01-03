@@ -40,7 +40,7 @@ public:
     * @param int
     * @param char*
     */
-    void build(const ReadFromuser& design);
+    void build(const Reader& design);
 
 private:
     InitObject data;
