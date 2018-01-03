@@ -7,7 +7,7 @@
 
 
 #include "Strategy.h"
-#include "../FileControler.h"
+#include "../ExternalHandler/FileControler.h"
 #include "../Exceptions/inithumanException.h"
 #include "../Exceptions/equalityException.h"
 

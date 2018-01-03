@@ -7,9 +7,9 @@
 
 
 #include <ostream>
-#include "../Point2d.h"
-#include "../DefaultDefines.h"
-#include "../Destroyer.h"
+#include "../game/Point2d.h"
+#include "../game/DefaultDefines.h"
+#include "../game/Destroyer.h"
 
 enum class typeofObject:int
 {COLLECTIBLE,NOTCOLLECTIBLE,ARMOR,WEAPON,HEAVY,LIGHT,BODYARMOR,SHEILDARMOR};

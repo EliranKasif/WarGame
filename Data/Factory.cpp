@@ -3,12 +3,12 @@
 //
 
 #include "Factory.h"
-#include "items/collectible/weapons/light/M16.h"
-#include "items/collectible/weapons/heavy/Missile.h"
-#include "items/collectible/weapons/light/Uzi.h"
-#include "items/collectible/armors/ShieldArmor.h"
-#include "items/collectible/armors/BodyArmor.h"
-#include "items/notcollectible/Tree.h"
+#include "../items/collectible/weapons/light/M16.h"
+#include "../items/collectible/weapons/heavy/Missile.h"
+#include "../items/collectible/weapons/light/Uzi.h"
+#include "../items/collectible/armors/ShieldArmor.h"
+#include "../items/collectible/armors/BodyArmor.h"
+#include "../items/notcollectible/Tree.h"
 
 std::vector<Destroyer*> Factory:: byebye;
 

@@ -4,7 +4,7 @@
 
 #include <complex>
 #include "Player.h"
-#include "Factory.h"
+#include "../Data/Factory.h"
 
 int Player::id=1;
 int Player::steps=0;
@@ -191,6 +191,10 @@ Player::~Player() {
 //    }
     if(strategy)
         delete(strategy);
+}
+
+const int Player::getPlayerId() const {
+    return playerId;
 }
 
 

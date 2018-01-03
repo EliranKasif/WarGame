@@ -7,14 +7,14 @@
 
 
 #include "InitObject.h"
-#include "strategy/HumanStrategy.h"
-#include "strategy/ComputerStrategy.h"
-#include "items/collectible/weapons/Weapons.h"
-#include "items/collectible/armors/Armors.h"
-#include "items/notcollectible/NotCollectibleItems.h"
-#include "soldiers/RegularSoldier.h"
-#include "soldiers/HealerSoldier.h"
-#include "soldiers/SniperSoldier.h"
+#include "../strategy/HumanStrategy.h"
+#include "../strategy/ComputerStrategy.h"
+#include "../items/collectible/weapons/Weapons.h"
+#include "../items/collectible/armors/Armors.h"
+#include "../items/notcollectible/NotCollectibleItems.h"
+#include "../soldiers/RegularSoldier.h"
+#include "../soldiers/HealerSoldier.h"
+#include "../soldiers/SniperSoldier.h"
 
 class Factory {
 

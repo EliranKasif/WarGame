@@ -9,7 +9,7 @@
 #include <vector>
 #include <list>
 #include <ostream>
-#include "../Point2d.h"
+#include "../game/Point2d.h"
 
 class Strategy {
 

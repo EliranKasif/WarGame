@@ -2,38 +2,43 @@
 
 
 
-#include "FileControler.h"
-#include "InitCSV.h"
-#include "Decoder.h"
-#include "strategy/Strategy.h"
-#include "strategy/HumanStrategy.h"
-#include "strategy/ComputerStrategy.h"
-#include "InitObject.h"
-#include "items/collectible/weapons/light/Uzi.h"
-#include "Environment.h"
-#include "DataStructure.h"
+
+#include "game/Game.h"
 
 int main (int argc, char *argv[])  {
+
+    Game game;
     try {
-    DataStructure dataStructure(argc, argv);
-        std::ofstream streamouts;
-        streamouts.open(("Out.txt"));
-        streamouts<<"The WarGame by Noy && Eliran"<<std::endl;
-        int stop=dataStructure.getData()->getNumofplayers()*dataStructure.getData()->getNumofsoldiers();
-        while(Player::steps<stop) {
-            for (auto &p:dataStructure.getData()->getPlayers()) {
-                p->round(dataStructure.getArena(),streamouts);
-            }
-        }
-        streamouts<<"The WarGame Finished";
-        streamouts.close();
-        std::cout<<dataStructure;
-        Destroyer::Destroy(Factory::getByebye());
+        game.read(argc,argv);
+        game.initDataStructure();
+        game.GameLogic();
+        game.GameOver();
     }
     catch (const MyException& e){
         std::cerr<<e.what();
         exit(1);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //std::cout<<dataStructure;
 
 //

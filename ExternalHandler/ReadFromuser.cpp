@@ -4,7 +4,7 @@
 
 #include "ReadFromuser.h"
 
-void ReadFromuser::build(int argc, char **argv) throw (decodeException,argumentException,numofplayerException,numofSoldiersException){
+void ReadFromuser::readArgv(int argc, char **argv) throw (decodeException,argumentException,numofplayerException,numofSoldiersException){
     if(argc == 1)
     {
         throw argumentException();

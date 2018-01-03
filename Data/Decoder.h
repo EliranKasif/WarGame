@@ -6,11 +6,11 @@
 #define WARGAME_DECODER_H
 
 
-#include "FileControler.h"
-#include "Point2d.h"
-#include "Exceptions/decodeException.h"
-#include "Exceptions/numofplayerException.h"
-#include "Exceptions/numofSoldiersException.h"
+#include "../ExternalHandler/FileControler.h"
+#include "../game/Point2d.h"
+#include "../Exceptions/decodeException.h"
+#include "../Exceptions/numofplayerException.h"
+#include "../Exceptions/numofSoldiersException.h"
 #include <sstream>
 #include <iostream>
 #include <ostream>

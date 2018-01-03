@@ -7,8 +7,8 @@
 
 
 #include <ostream>
-#include "../Point2d.h"
-#include "../DefaultDefines.h"
+#include "../game/Point2d.h"
+#include "../game/DefaultDefines.h"
 #include "../items/collectible/armors/Armors.h"
 #include "../items/collectible/weapons/Weapons.h"
 #include <list>

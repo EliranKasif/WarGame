@@ -8,10 +8,10 @@
 
 #include <map>
 #include <ostream>
-#include "strategy/Strategy.h"
-#include "soldiers/Soldiers.h"
-#include "Decoder.h"
-#include "Environment.h"
+#include "../strategy/Strategy.h"
+#include "../soldiers/Soldiers.h"
+#include "../Data/Environment.h"
+#include "../Data/Decoder.h"
 
 class Player:public Destroyer {
 private:
@@ -29,6 +29,8 @@ private:
     void isInArena(Point2d& newlocation,int wSize,int hSize);
 
 public:
+    const int getPlayerId() const;
+
     static int steps;
 
     /*

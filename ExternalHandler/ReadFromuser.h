@@ -6,15 +6,15 @@
 #define WARGAME_READFROMUSER_H
 
 
-#include "Decoder.h"
+#include "../Data/Decoder.h"
 #include "InitCSV.h"
-#include "Exceptions/argumentException.h"
+#include "../Exceptions/argumentException.h"
 
 class ReadFromuser {
 public:
     Decoder *getBuffer() const;
     const std::list<FileControler *> &getFiletoplayers() const;
-    void build(int argc, char **argv) throw (decodeException,argumentException,numofplayerException,numofSoldiersException);
+    void readArgv(int argc, char **argv) throw (decodeException,argumentException,numofplayerException,numofSoldiersException);
     virtual ~ReadFromuser();
 
 private:

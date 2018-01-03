@@ -2,18 +2,18 @@
 // Created by eliran on 28/12/17.
 //
 
-#include <iostream>
 #include "Environment.h"
 
+
 void Environment:: addSoldier(size_t i,size_t j,Soldiers* soldier){
-    SolidersEnviroment[i/10][j/10].emplace_back(soldier);
+    SolidersEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].emplace_back(soldier);
 }
 void Environment:: removeSoldier(size_t i,size_t j,Soldiers* soldier){
-    auto it=SolidersEnviroment[i/10][j/10].begin();
-    while(it != SolidersEnviroment[i/10][j/10].end()){
+    auto it=SolidersEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].begin();
+    while(it != SolidersEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].end()){
         if(*it==soldier)
         {
-            SolidersEnviroment[i/10][j/10].erase(it);
+            SolidersEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].erase(it);
             break;
         }
         ++it;
@@ -21,28 +21,28 @@ void Environment:: removeSoldier(size_t i,size_t j,Soldiers* soldier){
 }
 void Environment:: addItem(size_t i,size_t j,Items& item){
     auto ktovet=&item;
-    itemsEnviroment[i/10][j/10].emplace_back(&item);
-    for(auto& p:itemsEnviroment[i/10][j/10])
+    itemsEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].emplace_back(&item);
+    for(auto& p:itemsEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE])
     {
         auto ktovet1=&p;
         ktovet1=&p;
     }
 }
 void Environment:: removeIteam(size_t i,size_t j,Items& item){
-    auto it=itemsEnviroment[i/10][j/10].begin();
-    while(it != itemsEnviroment[i/10][j/10].end()){
+    auto it=itemsEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].begin();
+    while(it != itemsEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].end()){
         if(*it==&item)
         {
-            itemsEnviroment[i/10][j/10].erase(it);
+            itemsEnviroment[i/DEFAULT_GRID_SIZE][j/DEFAULT_GRID_SIZE].erase(it);
             break;
         }
         ++it;
     }
 }
 
-void Environment:: build(){
-    size_t x=wSize/10;
-    size_t y=hSize/10;
+void Environment:: reSizeArena(){
+    size_t x=wSize/DEFAULT_GRID_SIZE;
+    size_t y=hSize/DEFAULT_GRID_SIZE;
     itemsEnviroment.resize(x);
     SolidersEnviroment.resize(x);
     for(int i = 0 ; i < x ; ++i)
@@ -73,7 +73,7 @@ void Environment::setHSize(size_t hSize) {
 }
 
 bool Environment:: ifsolid(Point2d point) {
-    auto list = itemsEnviroment[point.getX() / 10][point.getY() / 10];
+    auto list = itemsEnviroment[point.getX() / DEFAULT_GRID_SIZE][point.getY() / DEFAULT_GRID_SIZE];
     if (ZERO != list.size()) {//check if the list of the item in [x,y] is notempty
         for (auto &it:list) {//check the type of the item!!
 
@@ -82,22 +82,22 @@ bool Environment:: ifsolid(Point2d point) {
 }
 
 std::list<Soldiers*>& Environment::getSoldiersinArena(size_t i,size_t j){
-    i=i/10;
-    j=j/10;
+    i=i/DEFAULT_GRID_SIZE;
+    j=j/DEFAULT_GRID_SIZE;
     auto ktovetlist=&SolidersEnviroment[i][j];
     return SolidersEnviroment[i][j];
 }
 
 std::list<Items*>& Environment::getItemsinArena(size_t i,size_t j){
-    i=i/10;
-    j=j/10;
+    i=i/DEFAULT_GRID_SIZE;
+    j=j/DEFAULT_GRID_SIZE;
     return itemsEnviroment[i][j];
 }
 
 std::ostream &operator<<(std::ostream &os, const Environment &environment) {
     os << "wSize: " << environment.wSize << " hSize: " << environment.hSize << "\nSoldiersEnviroment: "<<std::endl;
-    size_t x=environment.wSize/10;
-    size_t y=environment.hSize/10;
+    size_t x=environment.wSize/DEFAULT_GRID_SIZE;
+    size_t y=environment.hSize/DEFAULT_GRID_SIZE;
     for(size_t i=0;i<x;++i){
         for(size_t j=0;j<y;++j){
             os<<"["<<i<<","<<j<<"]: ";
@@ -128,8 +128,8 @@ std::ostream &operator<<(std::ostream &os, const Environment &environment) {
 }
 
 Environment::~Environment(){
-    size_t x=wSize/10;
-    size_t y=hSize/10;
+    size_t x=wSize/DEFAULT_GRID_SIZE;
+    size_t y=hSize/DEFAULT_GRID_SIZE;
     for(int i = 0 ; i < x ; ++i)
     {
         //Grow Columns by hSize

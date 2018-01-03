@@ -9,8 +9,9 @@
 #include <vector>
 #include <list>
 #include <ostream>
-#include "items/Items.h"
-#include "soldiers/Soldiers.h"
+#include <iostream>
+#include "../items/Items.h"
+#include "../soldiers/Soldiers.h"
 
 class Environment {
 
@@ -32,10 +33,10 @@ public:
     ~Environment();
 
     /*
-     * @brief build environment by the data
+     * @brief reSize environment by the data
      * @return void
      */
-    void build();
+    void reSizeArena();
 
     /*
      * @brief get width size of the environment
@@ -129,10 +130,6 @@ public:
      * @return ostream
      */
     friend std::ostream &operator<<(std::ostream &os, const Environment &environment);
-
-
-
-
 };
 
 

@@ -9,13 +9,10 @@
 #include <map>
 #include <list>
 #include <vector>
-#include "Player.h"
-#include "items/Items.h"
+#include "../game/Player.h"
+#include "../items/Items.h"
 #include "Decoder.h"
 #include "Factory.h"
-#include "Environment.h"
-#include "Exceptions/MyException.h"
-#include "Exceptions/numofplayerException.h"
 
 //TO-DO: Singelton!!
 
@@ -141,7 +138,7 @@ public:
     /*
      * @brief override operator<<
      * @param os - ostream& to return the stream
-     * @param const Environment & the object we want to print
+     * @param const the object we want to print
      * @return ostream
      */
     friend std::ostream &operator<<(std::ostream &os, const InitObject &object);
